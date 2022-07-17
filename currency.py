@@ -10,14 +10,14 @@ class CurrencyFinder:
       self.end_date = end_date
     
     def find_countries(self):
+      Currency_API_Key=os.getenv("Currency_API_Key")
+      unsplash_key= os.getenv("UNSPLASH_KEY")
       url = f"https://api.apilayer.com/exchangerates_data/fluctuation?start_date={self.start_date}&end_date={self.end_date}&base={self.base}"
       countries_info = []
       payload = {}
       headers= {
-        "apikey": "PyPZOB4LbjtqDiYMG6RmhWBKG76X5rH6"
+        "apikey": Currency_API_Key
       }
-      unsplash_key = "BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA"
-
       response = requests.request("GET", url, headers=headers, data = payload)
 
       status_code = response.status_code
