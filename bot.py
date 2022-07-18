@@ -4,15 +4,16 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
 telegram_token=os.getenv("Telegram_Token")
-TOKEN = telegram_token
+print(telegram_token)
 bot_id = "t.me/travel_suggest_bot"
 
-bot = telegram.Bot(token=TOKEN)
+bot = telegram.Bot(token=telegram_token)
 
 app = Flask(__name__)
 
-@app.route('/{}'.format(TOKEN), methods=['POST'])
+@app.route('/{}'.format(telegram_token), methods=['POST'])
 def respond():
     update = telegram.Update.de_json(request.get_json(force=True), bot)
 
@@ -30,17 +31,24 @@ def respond():
     else:
         try:
             if text == "/my_list":
-                pass
+                bot.sendMessage(chat_id=chat_id, text="my list works")
         except Exception:
             bot.sendMessage(chat_id=chat_id, text="There was a problem in the name you used, please enter different name", reply_to_message_id=msg_id)
 
 sched = BackgroundScheduler(daemon=True)
 
 
-@sched.scheduled_job('cron', hour=9)
-@app.route('/{}'.format(TOKEN), methods=['POST'])
+@sched.scheduled_job('cron', hour=17)
+@app.route('/{}'.format(telegram_token), methods=['POST'])
 def post_news():
-    pass
+    update = telegram.Update.de_json(request.get_json(force=True), bot)
+    chat_id = update.message.chat.id
+
+    bot.sendMessage(chat_id=chat_id, text="it`s 17")
+
+@app.route('/')
+def index():
+   return '.'
 
 if __name__ == '__main__':
     sched.start()
