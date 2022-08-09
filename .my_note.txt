@@ -1,0 +1,44 @@
+Microsoft Windows [Version 10.0.22000.795]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\bz178>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 15037  100 15037    0     0   3826      0  0:00:03  0:00:03 --:--:--  3826
+=> Downloading nvm from git to '/home/kelp710/.nvm'
+=> Cloning into '/home/kelp710/.nvm'...
+remote: Enumerating objects: 355, done.
+remote: Counting objects: 100% (355/355), done.
+remote: Compressing objects: 100% (302/302), done.
+remote: Total 355 (delta 39), reused 169 (delta 28), pack-reused 0
+Receiving objects: 100% (355/355), 216.09 KiB | 557.00 KiB/s, done.
+Resolving deltas: 100% (39/39), done.
+* (HEAD detached at FETCH_HEAD)
+  master
+=> Compressing and cleaning up git repository
+
+=> Appending nvm source string to /home/kelp710/.bashrc
+=> Appending bash_completion source string to /home/kelp710/.bashrc
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+=> You currently have modules installed globally with `npm`. These will no
+=> longer be linked to the active version of Node when you install a new node
+=> with `nvm`; and they may (depending on how you construct your `$PATH`)
+=> override the binaries of modules installed with `nvm`:
+
+/srv/zulip-node/lib
+├── corepack@0.10.0
+=> If you wish to uninstall them at a later point (or re-install them under your
+=> `nvm` Nodes), you can remove them from the system Node as follows:
+
+     $ nvm use system
+     $ npm uninstall -g a_module
+
+=> Close and reopen your terminal to start using nvm or run the following to use it now:
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash
+
+removed node.js and try to install nvm and npm
+
+because probably there is version error on node.js
