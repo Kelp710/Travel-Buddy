@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 # from currency import CurrencyFinder
-import json
 
 app = FastAPI()
 
 origins = [
+    "http://localhost",
     "http://10.10.1.10:3000",
 ]
 
@@ -29,6 +29,10 @@ hard_countries ={"About":[
 ]}
 # hard_json = json.dumps(hard_countries)
 # print(hard_json)
+# c = CurrencyFinder("JPY","2020-03-03","2020-09-06")
+# countries = c.find_countries()
+# countries_data = {"About":countries}
+# print(countries_data)
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,6 +45,8 @@ app.add_middleware(
 # c = CurrencyFinder()
 # coin = c.find_countries("JPY","2020-03-03","2020-09-06")
 # print(coin)
+
+
 
 @app.get("/")
 def Hello():

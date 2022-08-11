@@ -1,6 +1,23 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import requests
 import os
 from datetime import date
+
+app = FastAPI()
+
+origins = [
+    "http://10.10.1.10:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 class CurrencyFinder:
     def __init__(self, base, start_date, end_date) -> None:
@@ -21,19 +38,16 @@ class CurrencyFinder:
 
       status_code = response.status_code
       result = response.json()
-      print(result)
       for n in result["rates"]:
         country_info = {}
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
         if change_pct >= 20:
-          print(n)
 
 
           # Get basic country`s info
           url = f"https://restcountries.com/v2/currency/{n}"
           r = requests.get(url)
-          print(r)
           if r.status_code == 404:
             pass
           else:
@@ -49,9 +63,7 @@ class CurrencyFinder:
             # Get picture url of the country
             url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
             r_2 = requests.get(url) 
-            print(r_2)
             pic_data = r_2.json()[0]["urls"]["raw"]
-            print(pic_data)
             country_info["picture"]=pic_data
 
             # get safe level by country code
@@ -61,7 +73,6 @@ class CurrencyFinder:
             safe_data = r_3.json()['data'][country_code]['advisory']
 
             country_info["safe_level"]=safe_data
-            print(country_info)
 
             countries_info.append(country_info)
         else:

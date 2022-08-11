@@ -58,10 +58,6 @@ const App = () => {
 
       <Navigation />
       <Header data={landingPageData.Header} />
-      <h1>{data.About[0].country}</h1>
-      {/* {!data?<h3>{data}</h3>:<h3>{data}</h3>} */}
-      {/* {data?<h1>{data.About}</h1>:<h2>foo</h2>} */}
-      {/* <Features data={landingPageData.Features} /> */}
       <About data={data.About}/>
       <Services data={landingPageData.Services} />
       <Gallery data={landingPageData.Gallery}/>

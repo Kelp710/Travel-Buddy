@@ -54,7 +54,7 @@ export const About = (props) => {
     <div className="about">
       <ul>
       {props.data.map((d, i) => (
-        <li key={d.alpha2Code.toString()}>
+      <li key={d.alpha2Code.toString()} className="now_country">
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-md-6">

@@ -307,6 +307,10 @@ header .intro-text {
   line-height: 24px;
   margin: 30px 0;
 }
+
+.now_country{
+  padding: 20px 0px;
+}
 /* Services Section */
 #services {
   padding: 100px 0;
