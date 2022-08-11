@@ -62,7 +62,7 @@ const App = () => {
       {/* {!data?<h3>{data}</h3>:<h3>{data}</h3>} */}
       {/* {data?<h1>{data.About}</h1>:<h2>foo</h2>} */}
       {/* <Features data={landingPageData.Features} /> */}
-      {/* <About data={data.About}/> */}
+      <About data={data.About}/>
       <Services data={landingPageData.Services} />
       <Gallery data={landingPageData.Gallery}/>
       <Testimonials data={landingPageData.Testimonials} />
