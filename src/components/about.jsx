@@ -1,18 +1,21 @@
 export const About = (props) => {
+  
+
   return (
     <div id="about">
+      {props.map((d, i) => (
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-md-6">
             {" "}
-            <img src="img/about.jpg" className="img-responsive" alt="" />{" "}
+            <img src={d.picture} className="img-responsive" alt="" />{" "}
           </div>
           <div className="col-xs-12 col-md-6">
             <div className="about-text">
-              <h2>About Us</h2>
-              <p>{props.data ? props.data.paragraph : "loading..."}</p>
+              <h2>{d.country}</h2>
+              <p>{d ? d.advisory.message : "loading..."}</p>
               <h3>Why Choose Us?</h3>
-              <div className="list-style">
+              {/* <div className="list-style"> */}
                 <div className="col-lg-6 col-sm-6 col-xs-12">
                   <ul>
                     {props.data
@@ -31,11 +34,12 @@ export const About = (props) => {
                       : "loading"}
                   </ul>
                 </div>
-              </div>
+              {/* </div> */}
             </div>
           </div>
         </div>
       </div>
+      ))} 
     </div>
   );
 };
