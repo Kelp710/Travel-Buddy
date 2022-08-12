@@ -5,6 +5,7 @@ import os
 from datetime import date
 from fastapi import APIRouter, Depends, HTTPException
 from app.dependencies import get_token_header
+import datetime
 
 router = APIRouter(
     prefix="/countries",
@@ -90,8 +91,7 @@ class CurrencyFinder:
         
       return countries_info
       
-      
-
+today = datetime.datetime.now()
     
     
 c = CurrencyFinder("JPY","2020-03-03","2020-09-06")
