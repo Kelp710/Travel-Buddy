@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 from dateutil.relativedelta import relativedelta
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
@@ -22,11 +22,11 @@ app.add_middleware(
 )
 
 today = datetime.datetime.now()
-today_data = f"{today.year}-{today.month}-{today.day}"
+today_data = f"{today.year}-{today.strftime('%m')}-{today.strftime('%d')}"
 past = today + relativedelta(months=-3)
-past_data = f"{past.year}-{past.month}-{past.day}"
+past_data = f"{past.year}-{past.strftime('%m')}-{past.strftime('%d')}"
 
-c = currency.CurrencyFinder("CAD", past, today_data)
+c = currency.CurrencyFinder("CAD", past_data, today_data)
 countries = c.find_countries()
 countries_data = {"About":countries}
 

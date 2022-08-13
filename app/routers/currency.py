@@ -3,14 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import os
 from datetime import date
-from fastapi import APIRouter, Depends, HTTPException
-from app.dependencies import get_token_header
+from fastapi import APIRouter, HTTPException
 import datetime
 
 router = APIRouter(
     prefix="/countries",
     tags=["countries"],
-    dependencies=[Depends(get_token_header)],
     responses={404: {"description": "Not found"}},
 )
 
@@ -49,11 +47,12 @@ class CurrencyFinder:
 
       status_code = response.status_code
       result = response.json()
+
       for n in result["rates"]:
         country_info = {}
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
-        if change_pct >= 20:
+        if change_pct >= 26:
 
 
           # Get basic country`s info
@@ -91,13 +90,7 @@ class CurrencyFinder:
         
       return countries_info
       
-today = datetime.datetime.now()
-    
-    
-c = CurrencyFinder("JPY","2020-03-03","2020-09-06")
-countries = c.find_countries()
-countries_data = {"About":countries}
-print(countries_data)
+
 
 @router.get("/")
 @staticmethod
