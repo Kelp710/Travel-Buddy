@@ -1,54 +1,8 @@
-// export const About = (props) => {
-  
-
-//   return (
-//           <div className="col-xs-12 col-md-6">
-//             {" "}
-//             <img src={props.picture} className="img-responsive" alt="" />{" "}
-//           </div>
-//     <div id="about">
-//       {props.map((d, i) => (
-//       <div className="container">
-//         <div className="row">
-//           <div className="col-xs-12 col-md-6">
-//             {" "}
-//             <img src={props.picture} className="img-responsive" alt="" />{" "}
-//           </div>
-//           <div className="col-xs-12 col-md-6">
-//             <div className="about-text">
-//               <h2>{props.country}</h2>
-//               <p>{props ? props.advisory.message : "loading..."}</p>
-//               <h3>Why Choose Us?</h3>
-//               <div className="list-style">
-//                 <div className="col-lg-6 col-sm-6 col-xs-12">
-//                   <ul>
-//                     {props.data
-//                       ? props.data.Why.map((d, i) => (
-//                           <li key={`${d}-${i}`}>{d}</li>
-//                         ))
-//                       : "loading"}
-//                   </ul>
-//                 </div>
-//                 <div className="col-lg-6 col-sm-6 col-xs-12">
-//                   <ul>
-//                     {props.data
-//                       ? props.data.Why2.map((d, i) => (
-//                           <li key={`${d}-${i}`}> {d}</li>
-//                         ))
-//                       : "loading"}
-//                   </ul>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//       ))} 
-//     </div>
-//   );
-// };
 
 export const About = (props) => {
+
+
+    
   console.log(props.data)
   return (
     <div id="about">
@@ -63,7 +17,8 @@ export const About = (props) => {
           </div>
           <div className="col-xs-12 col-md-6">
             <div className="about-text">
-              <h2>{d.country}</h2>
+              <div className="country_title"><h2 className="country_name">{d.country}</h2><h3>Area: {d.region}</h3></div>
+              <h3 className={d.safe_level.score >3 ? "danger_level":"safe_level"}>Danger Level: {d.safe_level.score}/5</h3>
               <p>{d ? d.country : "loading..."}</p>
               <h3>Why Choose Us?</h3>
               {/* <div className="list-style">

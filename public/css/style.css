@@ -296,6 +296,59 @@ header .intro-text {
   font-weight: 300;
   padding-right: 8px;
 }
+#about .country_title{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  bottom: 0;
+}
+#about .country_name{
+  padding-right: 30px;
+}
+#about .region{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  bottom: 0;
+}
+.danger_level {
+  vertical-align: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  color: black;
+  background-color: #FF1E1E;
+  padding: 10px 20px;
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: all 0.5s linear;
+  border: 0;
+}
+
+.safe_level {
+  vertical-align: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  color: black;
+  background: linear-gradient(to right, #00ed7e 0%, #5ca9fb 100%);
+  padding: 10px 20px;
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: all 0.5s linear;
+  border: 0;
+}
+
 #about img {
   width: 520px;
   margin-top: 10px;

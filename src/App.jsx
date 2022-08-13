@@ -18,6 +18,8 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
   speedAsDuration: true,
 });
 
+
+
 const App = () => {
   const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
@@ -36,22 +38,12 @@ const App = () => {
   }, []);
   
 
-  // const GetData = () => {
-	// 	axios.get(url).then((res) => {
-	// 		setData(res.data);
-  //     console.log(res);
-	// 	});
-	// };
   const isEmpty = Object.keys(data).length === 0;
 
   if (isEmpty) {
     return null;
   }
 
-  console.log(data)
-
-
-  
 
   return (
     <div>

@@ -52,7 +52,7 @@ class CurrencyFinder:
         country_info = {}
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
-        if change_pct >= 26:
+        if change_pct >= 21:
 
 
           # Get basic country`s info
