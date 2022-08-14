@@ -318,10 +318,9 @@ header .intro-text {
   width: -moz-fit-content;
   width: fit-content;
   font-family: sans-serif;
-  text-transform: uppercase;
-  color: black;
-  background-color: #FF1E1E;
-  padding: 10px 20px;
+  color: #fff;
+  background: linear-gradient(to right, #FF4000 0%, #DF0101 100%);
+  padding: 7px 16px;
   letter-spacing: 1px;
   margin: 0;
   font-size: 15px;
@@ -330,16 +329,30 @@ header .intro-text {
   transition: all 0.5s linear;
   border: 0;
 }
-
+.middle_level {
+  vertical-align: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: sans-serif;
+  color: #fff;
+  background: linear-gradient(to right, #dee205 0%, #9dc003 100%);
+  padding: 7px 16px;
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: all 0.5s linear;
+  border: 0;
+}
 .safe_level {
   vertical-align: auto;
   width: -moz-fit-content;
   width: fit-content;
   font-family: sans-serif;
-  text-transform: uppercase;
-  color: black;
-  background: linear-gradient(to right, #00ed7e 0%, #5ca9fb 100%);
-  padding: 10px 20px;
+  color: #fff;
+  background: linear-gradient(to right, #00ed7e 0%, #01A9DB 100%);
+  padding: 7px 16px;
   letter-spacing: 1px;
   margin: 0;
   font-size: 15px;

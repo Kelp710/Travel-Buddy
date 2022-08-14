@@ -1,5 +1,5 @@
 
-export const About = (props) => {
+export const Countries = (props) => {
 
 
     
@@ -18,7 +18,9 @@ export const About = (props) => {
           <div className="col-xs-12 col-md-6">
             <div className="about-text">
               <div className="country_title"><h2 className="country_name">{d.country}</h2><h3>Area: {d.region}</h3></div>
-              <h3 className={d.safe_level.score >3 ? "danger_level":"safe_level"}>Danger Level: {d.safe_level.score}/5</h3>
+              <h3 className={d.safe_level.score < 4 ? d.safe_level.score < 3 ? "safe_level": "middle_level"   :"danger_level"}>Safe Level: {d.safe_level.score}/5</h3>
+              <h3>Bottle of Coke: {d.coke_price}</h3>
+              <h3>Can of Beer: {d.beer_price}</h3>
               <p>{d ? d.country : "loading..."}</p>
               <h3>Why Choose Us?</h3>
               {/* <div className="list-style">

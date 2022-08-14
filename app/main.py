@@ -28,7 +28,7 @@ past_data = f"{past.year}-{past.strftime('%m')}-{past.strftime('%d')}"
 
 c = currency.CurrencyFinder("CAD", past_data, today_data)
 countries = c.find_countries()
-countries_data = {"About":countries}
+countries_data = {"Countries":countries}
 
 @app.get("/")
 @staticmethod
