@@ -36,6 +36,20 @@ r_2 = requests.get(url)
 # print(r_2)
 url = f"https://restcountries.com/v2/currency/EUR"
 r = requests.get(url)
+
+url = f"https://api.apilayer.com/exchangerates_data/fluctuation?start_date=2020-03-03&end_date=2021-02-03&base=JPY"
+countries_info = []
+payload = {}
+headers= {
+"apikey": "YW9YYuJleCkcnDXY4hLUGspYSZI3HZ9J"
+}
+unsplash_key = "BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA"
+
+response = requests.request("GET", url, headers=headers, data = payload)
+
+status_code = response.status_code
+result = response.json()
+print(result)
 # print(r.json())
 
 

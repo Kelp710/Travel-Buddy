@@ -1,0 +1,2 @@
+To use dict from python (uvicorn app.main:app --reload)
+to start the app (npm start)

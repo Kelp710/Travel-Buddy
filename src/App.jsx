@@ -8,7 +8,12 @@ import { Gallery } from "./components/gallery";
 import { Testimonials } from "./components/testimonials";
 import { Team } from "./components/Team";
 import { Contact } from "./components/contact";
+import { Home } from "./components/homepage";
+
 import { SignUp } from "./components/sign";
+import { AuthProvider } from './context/authcontext';
+import { BrowserRouter, Route ,Routes} from 'react-router-dom';
+
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
@@ -47,8 +52,14 @@ const App = () => {
 
 
   return (
+    <AuthProvider>
     <div>
-      <SignUp/>
+    <BrowserRouter>
+    <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path ="/" element={<Home/>} />
+          </Routes>
+        </BrowserRouter>
       {/* <Navigation /> */}
       {/* <Header data={landingPageData.Header} /> */}
       {/* <Countries data={data.Countries}/> */}
@@ -56,6 +67,7 @@ const App = () => {
       <Gallery data={landingPageData.Gallery}/>
       <Contact data={landingPageData.Contact} /> */}
     </div>
+    </AuthProvider>
   );
 };
 

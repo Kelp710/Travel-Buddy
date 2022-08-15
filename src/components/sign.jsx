@@ -1,5 +1,6 @@
 import { auth } from '../firebase';
 import { useState } from 'react';
+import { useAuthContext } from '../context/authcontext';
 
 
 export const SignUp = () => {
