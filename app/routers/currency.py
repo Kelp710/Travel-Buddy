@@ -60,103 +60,62 @@ class CurrencyFinder:
           else:
             currency_places = r.json()
 
-            if len(currency_places) > 1:
-              print(currency_places)
-              for place in currency_places:
-                  country_info = {}
-                  country_data = place
+            # if len(currency_places) > 1:
+            print(currency_places)
+            for place in range(len(currency_places)):
+                country_info = {}
+                country_data = currency_places
 
-                  country = country_data["name"]
+                country = country_data[place]["name"]
+                if country == "Lao People's Democratic Republic":
+                  country = "Laos"
                   country_info["country"]=country
-                  country_info["alpha2Code"] = country_data['alpha2Code']
-                  country_info["currency"]=n
-                  country_info["currecy_rate"] = current_price
-                  capital, country_info["capital"] = country_data["capital"]
-                  country_info["region"] = country_data["subregion"]
-                  
-                  # Get picture url of the country
-                  url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
-                  r_2 = requests.get(url) 
-                  pic_data = r_2.json()[0]["urls"]["raw"]
-                  country_info["picture"]=pic_data
-
-                  # get safe level by country code
-                  country_code = country_data['alpha2Code']
-                  url_safe = f"https://www.travel-advisory.info/api?countrycode={country_code}"
-                  r_3 = requests.get(url_safe)
-                  safe_data = r_3.json()['data'][country_code]['advisory']
-
-                  country_info["safe_level"]=safe_data
-
-                  # #get cost of living
-                  # url = "https://cities-cost-of-living1.p.rapidapi.com/get_cities_details_by_name"
-
-                  # payload = f"cities=%5B%7B%22name%22%3A%22{capital}%22%2C%22{country}%22%3A%22Japan%22%7D%5D&currencies=%5B%22USD%22%5D"
-                  # headers = {
-                  #   "content-type": "application/x-www-form-urlencoded",
-                  #   "X-RapidAPI-Key": "03bc48fe04mshafeb94884761a7dp135680jsn66224dffa769",
-                  #   "X-RapidAPI-Host": "cities-cost-of-living1.p.rapidapi.com"
-                  # }
-                  # r_4 = requests.request("POST", url, data=payload, headers=headers)
-                  # cost_of_living = r_4.json()
-
-                  # if r_4.status_code == 404 or r_4.status_code == 403:
-                  #   country_info["coke_price"] = "Date not available..."
-                  #   country_info["beer_price"] = "Date not available..."
-                  # else:
-                  #   country_info["coke_price"] = cost_of_living["data"]["cost_of_living_details"][7]["value"]
-                  #   country_info["beer_price"] = cost_of_living["data"]["cost_of_living_details"][4]["value"]
-
-
-                  countries_info.append(country_info)
-            elif len(currency_places) == 1:
-                  country_info = {}
-                  country_data = currency_places
-                  country = country_data[0]["name"]
+                else:
                   country_info["country"]=country
-                  country_info["alpha2Code"] = country_data[0]['alpha2Code']
-                  country_info["currency"]=n
-                  country_info["currecy_rate"] = current_price
-                  country_info["capital"] = country_data[0]["capital"]
-                  country_info["region"] = country_data[0]["subregion"]
-                    
-                  # Get picture url of the country
-                  url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
-                  r_2 = requests.get(url) 
-                  pic_data = r_2.json()[0]["urls"]["raw"]
-                  country_info["picture"]=pic_data
+                country_info["alpha2Code"] = country_data[place]['alpha2Code']
+                country_info["currency"]=n
+                country_info["currecy_rate"] = current_price
+                print(country_data[place])
+                capital = country_info["capital"] = country_data[place]["capital"]
+                country_info["region"] = country_data[place]["subregion"]
 
-                  # get safe level by country code
-                  country_code = country_data[0]['alpha2Code']
-                  url_safe = f"https://www.travel-advisory.info/api?countrycode={country_code}"
-                  r_3 = requests.get(url_safe)
-                  safe_data = r_3.json()['data'][country_code]['advisory']
+                # Get picture url of the country
+                url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
+                r_2 = requests.get(url) 
+                pic_data = r_2.json()[0]["urls"]["raw"]
+                country_info["picture"]=pic_data
 
-                  country_info["safe_level"]=safe_data
+                # get safe level by country code
+                country_code = country_data[place]['alpha2Code']
+                url_safe = f"https://www.travel-advisory.info/api?countrycode={country_code}"
+                r_3 = requests.get(url_safe)
+                safe_data = r_3.json()['data'][country_code]['advisory']
 
-                  # url = "https://cities-cost-of-living1.p.rapidapi.com/get_cities_details_by_name"
+                country_info["safe_level"]=safe_data
 
-                  # payload = f"cities=%5B%7B%22name%22%3A%22{capital}%22%2C%22{country}%22%3A%22Japan%22%7D%5D&currencies=%5B%22USD%22%5D"
-                  # headers = {
-                  #   "content-type": "application/x-www-form-urlencoded",
-                  #   "X-RapidAPI-Key": "03bc48fe04mshafeb94884761a7dp135680jsn66224dffa769",
-                  #   "X-RapidAPI-Host": "cities-cost-of-living1.p.rapidapi.com"
-                  # }
-                  # r_4 = requests.request("POST", url, data=payload, headers=headers)
-                  # cost_of_living = r_4.json()
+                # #get cost of living
+                # url = "https://cities-cost-of-living1.p.rapidapi.com/get_cities_details_by_name"
 
-                  # if r_4.status_code == 404 or r_4.status_code == 403:
-                  #   country_info["coke_price"] = "Date not available..."
-                  #   country_info["beer_price"] = "Date not available..."
-                  # else:
-                  #   country_info["coke_price"] = cost_of_living["data"]["cost_of_living_details"][7]["value"]
-                  #   country_info["beer_price"] = cost_of_living["data"]["cost_of_living_details"][4]["value"]
+                # payload = f"cities=%5B%7B%22name%22%3A%22{capital}%22%2C%22{country}%22%3A%22Japan%22%7D%5D&currencies=%5B%22USD%22%5D"
+                # headers = {
+                #   "content-type": "application/x-www-form-urlencoded",
+                #   "X-RapidAPI-Key": "03bc48fe04mshafeb94884761a7dp135680jsn66224dffa769",
+                #   "X-RapidAPI-Host": "cities-cost-of-living1.p.rapidapi.com"
+                # }
+                # r_4 = requests.request("POST", url, data=payload, headers=headers)
+                # cost_of_living = r_4.json()
 
-                  countries_info.append(country_info)
-            
+                # if r_4.status_code == 404 or r_4.status_code == 403:
+                #   country_info["coke_price"] = "Date not available..."
+                #   country_info["beer_price"] = "Date not available..."
+                # else:
+                #   country_info["coke_price"] = cost_of_living["data"]["cost_of_living_details"][7]["value"]
+                #   country_info["beer_price"] = cost_of_living["data"]["cost_of_living_details"][4]["value"]
+                
+
+                countries_info.append(country_info)
         else:
           pass
-        
       return countries_info
       
 

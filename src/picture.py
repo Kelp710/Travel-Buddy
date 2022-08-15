@@ -33,10 +33,11 @@ url = f"https://api.unsplash.com/photos/random/?client_id={splash}&query=Japan&o
 # url = f"https://www.travel-advisory.info/api?countrycode=JPN"
 
 r_2 = requests.get(url)
+print(r_2)
 # print(r_2)
-url = f"https://restcountries.com/v2/currency/EUR"
-r = requests.get(url)
-
+url = f"https://restcountries.com/v2/currency/JPY"
+r = requests.get(url).json()
+print(r)
 url = f"https://api.apilayer.com/exchangerates_data/fluctuation?start_date=2020-03-03&end_date=2021-02-03&base=JPY"
 countries_info = []
 payload = {}
@@ -49,7 +50,7 @@ response = requests.request("GET", url, headers=headers, data = payload)
 
 status_code = response.status_code
 result = response.json()
-print(result)
+
 # print(r.json())
 
 
