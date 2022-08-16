@@ -1,5 +1,5 @@
 
-import { auth } from '../firebase';
+import { auth, provider } from '../firebase';
 import { Link, Navigate ,} from 'react-router-dom';
 import { useState } from "react";
 
@@ -14,10 +14,18 @@ export const Login = () => {
           }
       };
 
+      const handleLogin = async (event) => {
+        try {
+          await auth.signInWithPopup(provider);
+        } catch (error) {
+          console.log(error);
+          setError(error.message);
+        }
+      };
+
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
       const [error, setError] = useState('');
-
 
 
       const handleChangeEmail = (event) => {
@@ -43,6 +51,7 @@ export const Login = () => {
           <div>
             <button>Log In{password}</button>
           </div>
+          <button onClick={handleLogin}>Googleログイン</button>
           <div>
           ユーザ登録は<Link to={'/signup'}>こちら</Link>から
         </div>
