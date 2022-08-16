@@ -1,15 +1,24 @@
 
 import { auth } from '../firebase';
-import { Link } from 'react-router-dom';
+import { Link, Navigate ,} from 'react-router-dom';
 import { useState } from "react";
 
 export const Login = () => {
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        auth.signInWithEmailAndPassword(email.value, password.value);
+        try {
+            await auth.signInWithEmailAndPassword(email.value, password.value);
+          } catch (error) {
+            console.log(error);
+            setError(error.message);
+          }
       };
+
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
+      const [error, setError] = useState('');
+
+
 
       const handleChangeEmail = (event) => {
         setEmail(event.currentTarget.value);
@@ -22,6 +31,7 @@ export const Login = () => {
         <div>
         <h1>Log In</h1>
         <form onSubmit={handleSubmit}>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
           <div>
             <label>メールアドレス</label>
             <input name="email" type="email" placeholder="email" onChange={(event) => handleChangeEmail(event)}/>
