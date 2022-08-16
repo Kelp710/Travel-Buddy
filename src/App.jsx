@@ -1,18 +1,11 @@
-import { useState, useEffect } from "react";
-import { Navigation } from "./components/navigation";
-import { Header } from "./components/header";
-import { Features } from "./components/features";
-import { Countries } from "./components/about";
-import { Services } from "./components/services";
-import { Gallery } from "./components/gallery";
-import { Testimonials } from "./components/testimonials";
-import { Team } from "./components/Team";
-import { Contact } from "./components/contact";
-import { Home } from "./components/homepage";
+import { useState, useEffect,Fragment } from "react";
 
+import { Home } from "./components/homepage";
+import { Login } from "./components/login";
 import { SignUp } from "./components/sign";
 import { AuthProvider } from './context/authcontext';
 import { BrowserRouter, Route ,Routes} from 'react-router-dom';
+import PrivateRoute from './components/privateroute';
 
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
@@ -55,10 +48,16 @@ const App = () => {
     <AuthProvider>
     <div>
     <BrowserRouter>
+    <Fragment>
     <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path ="/" element={<Home/>} />
+      <Route exact path="/" element={<PrivateRoute/>}>
+       <Route exact path="/" element={<Home/>} />
+    </Route>
+      <Route path ="/login" element={<Login/>} />
+      <Route path="/signup" element={<SignUp />} />
+
           </Routes>
+          </Fragment>
         </BrowserRouter>
       {/* <Navigation /> */}
       {/* <Header data={landingPageData.Header} /> */}
