@@ -1,4 +1,17 @@
+import { auth } from '../firebase';
+import {useNavigate, Navigate} from "react-router-dom"
+import { useAuthContext } from '../context/authcontext';
+
 export const Navigation = (props) => {
+  const usenavigate = useNavigate();
+  const { user } = useAuthContext();
+
+
+  const handleLogout = () => {
+    auth.signOut();
+    usenavigate('/login')
+    usenavigate(0);
+  };
   return (
     <nav id='menu' className='navbar navbar-default navbar-fixed-top'>
       <div className='container'>
@@ -26,8 +39,8 @@ export const Navigation = (props) => {
         >
           <ul className='nav navbar-nav navbar-right'>
             <li>
-              <a href='#features' className='page-scroll'>
-                Features
+              <a href='#header' className='page-scroll'>
+                Top
               </a>
             </li>
             <li>
@@ -56,8 +69,8 @@ export const Navigation = (props) => {
               </a>
             </li>
             <li>
-              <a href='#contact' className='page-scroll'>
-                Contact
+              <a onClick={handleLogout}>
+                Log Out
               </a>
             </li>
           </ul>
