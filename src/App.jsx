@@ -8,7 +8,6 @@ import { BrowserRouter, Route ,Routes} from 'react-router-dom';
 import PrivateRoute from './components/privateroute';
 import PublicPoute from './components/publicroute';
 
-import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
 import axios from "axios";
@@ -22,10 +21,6 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 
 
 const App = () => {
-  const [landingPageData, setLandingPageData] = useState({});
-  useEffect(() => {
-    setLandingPageData(JsonData);
-  },[]);
 
 
   return (

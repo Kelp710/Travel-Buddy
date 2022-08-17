@@ -6,13 +6,12 @@ export const Header = (props) => {
           <div className='container'>
             <div className='row'>
               <div className='col-md-8 col-md-offset-2 intro-text'>
-                <h1>
-                  {props.data ? props.data.title : 'Loading'}
+                <h1 className="big_title">
+                Countries you should go now
                   <span></span>
                 </h1>
-                <p>{props.data ? props.data.paragraph : 'Loading'}</p>
                 <a
-                  href='#countries'
+                  href='https://www.un.org/en/about-us/universal-declaration-of-human-rights'
                   className='btn btn-custom btn-lg page-scroll'
                 >
                   Learn More

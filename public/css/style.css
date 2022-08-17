@@ -418,6 +418,9 @@ header .intro-text {
   padding-bottom: 200px;
   text-align: center;
 }
+.big_title{
+  padding-bottom: 50px;
+}
 /* Features Section */
 #features {
   background: #f6f6f6;

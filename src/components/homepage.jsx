@@ -11,16 +11,12 @@ import { Contact } from "../components/contact";
 import { useAuthContext } from '../context/authcontext';
 import { auth } from '../firebase';
 import {useNavigate, Navigate} from "react-router-dom"
-import JsonData from "../data/data.json";
 import SmoothScroll from "smooth-scroll";
 import "../App.css";
 import axios from "axios";
 
 export const Home = () => {
-    const [landingPageData, setLandingPageData] = useState({});
-    useEffect(() => {
-      setLandingPageData(JsonData);
-    },[]);
+
   
     const [data, setData] = useState({});
     const usenavigate = useNavigate();
@@ -57,9 +53,8 @@ export const Home = () => {
       <div>
 
         <Navigation />
-        <Header data={landingPageData.Header} />
+        <Header/>
         <Countries data={data.Countries}/>
-        <button onClick={handleLogout}>Log Out</button>
         {/* {/* <Services data={landingPageData.Services} /> */}
         {/* <Gallery data={landingPageData.Gallery}/>
         <Contact data={landingPageData.Contact} /> */}
