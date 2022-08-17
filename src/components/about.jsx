@@ -21,8 +21,6 @@ export const Countries = (props) => {
               <h3 className={d.safe_level.score < 4 ? d.safe_level.score < 3 ? "safe_level": "middle_level"   :"danger_level"}>Safe Level: {d.safe_level.score}/5</h3>
               <h3>Bottle of Coke: {d.coke_price}</h3>
               <h3>Can of Beer: {d.beer_price}</h3>
-              <p>{d ? d.country : "loading..."}</p>
-              <h3>Why Choose Us?</h3>
               {/* <div className="list-style">
                 <div className="col-lg-6 col-sm-6 col-xs-12">
                   <ul>
