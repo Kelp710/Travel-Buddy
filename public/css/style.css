@@ -205,7 +205,6 @@ a:focus,
 }
 /* Sign in page */
 .sign_in{
-  display: table;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -228,6 +227,51 @@ a:focus,
  }
 .box_items{
   position:absolute;
+}
+.signin_title{
+  position: relative;
+  font-family: "Lobster";
+  bottom: 20px;
+  left: 120px;
+  margin: 30px 0px ;
+  color: #fff;
+  padding-bottom: 10px;
+
+}
+.sign_mail{
+  padding-bottom: 30px;
+}
+.sign_mail>input{
+  position: relative;
+  right: 20px;
+}
+.sign_pass>input{
+  position: relative;
+  right: 50px;
+}
+.sign_mail>label {
+  position: relative;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+  bottom: 10px;
+  left: 30px;
+}
+.sign_pass>label {
+  position: relative;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+  bottom: 10px;
+  left: 30px;
+}
+.signin_button{
+  position: relative;
+  left: 121px;
+  top: 65px;
+  padding: 10px 19px;
 }
 /* Log in page */
 .log_in{
