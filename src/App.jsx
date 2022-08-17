@@ -27,24 +27,6 @@ const App = () => {
     setLandingPageData(JsonData);
   },[]);
 
-//   const [data, setData] = useState({});
-// 	const url = "http://127.0.0.1:8000/";
-
-// // console.log(axios.get(url).data)
-
-//   useEffect(() => {
-//     axios.get(url).then((response) => {
-//       setData(response.data);
-//     });
-//   }, []);
-  
-
-//   const isEmpty = Object.keys(data).length === 0;
-
-//   if (isEmpty) {
-//     return null;
-//   }
-
 
   return (
     <AuthProvider>

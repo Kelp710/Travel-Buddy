@@ -19,10 +19,11 @@ export const SignUp = () => {
     };
 
     return(
-      <div>
+      <div className='sign_in'>
+      <div >
       <h1>ユーザ登録</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div >
           <label>メールアドレス</label>
           <input name="email" type="email" placeholder="email" onChange={(event) => handleChangeEmail(event)}/>
         </div>
@@ -34,6 +35,7 @@ export const SignUp = () => {
           <button>{password}</button>
         </div>
       </form>
+    </div>
     </div>
     )
   };
