@@ -1,11 +1,10 @@
 import { auth } from '../firebase';
-import {useNavigate, Navigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import { useAuthContext } from '../context/authcontext';
 
 export const Navigation = (props) => {
   const usenavigate = useNavigate();
   const { user } = useAuthContext();
-
 
   const handleLogout = () => {
     auth.signOut();

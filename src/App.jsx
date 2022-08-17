@@ -1,4 +1,4 @@
-import { useState, useEffect,Fragment } from "react";
+import { Fragment } from "react";
 
 import { Home } from "./components/homepage";
 import { Login } from "./components/login";
@@ -10,7 +10,6 @@ import PublicPoute from './components/publicroute';
 
 import SmoothScroll from "smooth-scroll";
 import "./App.css";
-import axios from "axios";
 import PublicRoute from "./components/publicroute";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
@@ -21,8 +20,6 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 
 
 const App = () => {
-
-
   return (
     <AuthProvider>
     <div>
@@ -38,16 +35,9 @@ const App = () => {
       <Route path="/signup" element={<PublicPoute/>}>
       <Route path="/signup" element={<SignUp />} />
       </Route>
-
           </Routes>
           </Fragment>
         </BrowserRouter>
-      {/* <Navigation /> */}
-      {/* <Header data={landingPageData.Header} /> */}
-      {/* <Countries data={data.Countries}/> */}
-      {/* <Services data={landingPageData.Services} />
-      <Gallery data={landingPageData.Gallery}/>
-      <Contact data={landingPageData.Contact} /> */}
     </div>
     </AuthProvider>
   );

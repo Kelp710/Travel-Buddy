@@ -50,7 +50,7 @@ class CurrencyFinder:
       for n in result["rates"]:
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
-        if change_pct >= 14:
+        if change_pct >= 24:
           # Get basic country`s info
           print(n)
           url = f"https://restcountries.com/v2/currency/{n}" 
@@ -93,26 +93,29 @@ class CurrencyFinder:
 
                 country_info["safe_level"]=safe_data
 
-                # #get cost of living
-                # url = "https://cities-cost-of-living1.p.rapidapi.com/get_cities_details_by_name"
-
-                # payload = f"cities=%5B%7B%22name%22%3A%22{capital}%22%2C%22{country}%22%3A%22Japan%22%7D%5D&currencies=%5B%22USD%22%5D"
-                # headers = {
-                #   "content-type": "application/x-www-form-urlencoded",
-                #   "X-RapidAPI-Key": "03bc48fe04mshafeb94884761a7dp135680jsn66224dffa769",
-                #   "X-RapidAPI-Host": "cities-cost-of-living1.p.rapidapi.com"
-                # }
-                # r_4 = requests.request("POST", url, data=payload, headers=headers)
-                # cost_of_living = r_4.json()
-
-                # if r_4.status_code == 404 or r_4.status_code == 403:
-                #   country_info["coke_price"] = "Date not available..."
-                #   country_info["beer_price"] = "Date not available..."
-                # else:
-                #   country_info["coke_price"] = cost_of_living["data"]["cost_of_living_details"][7]["value"]
-                #   country_info["beer_price"] = cost_of_living["data"]["cost_of_living_details"][4]["value"]
+                #get cost of living
+                url = "https://cities-cost-of-living1.p.rapidapi.com/get_cities_details_by_name"
                 
-
+                payload = f"cities=%5B%7B%22name%22%3A%22{capital}%22%2C%22country%22%3A%22{country}%22%7D%5D&currencies=%5B%22{self.base}%22%5D"
+                headers = {
+                  "content-type": "application/x-www-form-urlencoded",
+                  "X-RapidAPI-Key": "03bc48fe04mshafeb94884761a7dp135680jsn66224dffa769",
+                  "X-RapidAPI-Host": "cities-cost-of-living1.p.rapidapi.com"
+                }
+                r_4 = requests.request("POST", url, data=payload, headers=headers)
+                cost_of_living = r_4.json()
+                print(cost_of_living)
+                if r_4.status_code == 404 or r_4.status_code == 403:
+                  country_info["coke_price"] = "Date not available..."
+                  country_info["beer_price"] = "Date not available..."
+                else:
+                  if cost_of_living =={'message': 'You have exceeded the rate limit per minute for your plan, BASIC, by the API provider'} or cost_of_living=={'data': []}:
+                    country_info["coke_price"] = "Date not available..."
+                    country_info["beer_price"] = "Date not available..."
+                  else:
+                    country_info["coke_price"] = cost_of_living["data"][0]["cost_of_living_details"][0]["details"][7]["value"]
+                    country_info["beer_price"] = cost_of_living["data"][0]["cost_of_living_details"][0]["details"][4]["value"]
+                
                 countries_info.append(country_info)
         else:
           pass

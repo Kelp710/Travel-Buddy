@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
       unsubscribed();
     };
   }, []);
-
+  
   if (loading){
     return <Loading/>;
   }

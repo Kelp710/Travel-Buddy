@@ -1,17 +1,11 @@
 import { useState, useEffect } from "react";
 import { Navigation } from "../components/navigation";
 import { Header } from "../components/header";
-import { Features } from "../components/features";
 import { Countries } from "../components/about";
-import { Services } from "../components/services";
-import { Gallery } from "../components/gallery";
-import { Testimonials } from "../components/testimonials";
-import { Team } from "../components/Team";
 import { Contact } from "../components/contact";
 import { useAuthContext } from '../context/authcontext';
 import { auth } from '../firebase';
 import {useNavigate, Navigate} from "react-router-dom"
-import SmoothScroll from "smooth-scroll";
 import "../App.css";
 import axios from "axios";
 
@@ -44,10 +38,6 @@ export const Home = () => {
       usenavigate(0);
     };
   
-    console.log(user)
-
-  
-
     return (
 
       <div>
@@ -55,9 +45,7 @@ export const Home = () => {
         <Navigation />
         <Header/>
         <Countries data={data.Countries}/>
-        {/* {/* <Services data={landingPageData.Services} /> */}
-        {/* <Gallery data={landingPageData.Gallery}/>
-        <Contact data={landingPageData.Contact} /> */}
+        <Contact />
       </div>
     );
 }
