@@ -1,18 +1,24 @@
 import { useState } from 'react'
 import emailjs from 'emailjs-com'
+import Grid from '@mui/material/Grid';
+import Select from 'react-select'
+import countryList from "../data"
 
 const initialState = {
   name: '',
   email: '',
   message: '',
 }
+
 export const Contact = (props) => {
   const [{ name, email, message }, setState] = useState(initialState)
+  const [country, setCountry] = useState("")
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setState((prevState) => ({ ...prevState, [name]: value }))
   }
+
   const clearState = () => setState({ ...initialState })
 
   const handleSubmit = (e) => {
@@ -32,32 +38,40 @@ export const Contact = (props) => {
         }
       )
   }
+
+  const options = 
+    countryList.map((country, id) =>(
+    { value: {id}.id, label: {country}.country }),)
+  
+  const handleCountry = e => {
+      setCountry(e.label);
+    };
+
   return (
     <div>
       <div id='contact'>
         <div className='container'>
+        <Grid 
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+            >
           <div className='col-md-8'>
             <div className='row'>
               <div className='section-title'>
-                <h2>Get In Touch</h2>
+                <h2>Add countries You wanna go.</h2>
                 <p>
-                  Please fill out the form below to send us an email and we will
-                  get back to you as soon as possible.
+                  Add a country you wanna go with memo and Image
                 </p>
               </div>
+              <h1>{country}</h1>
               <form name='sentMessage' validate onSubmit={handleSubmit}>
                 <div className='row'>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                      <input
-                        type='text'
-                        id='name'
-                        name='name'
-                        className='form-control'
-                        placeholder='Name'
-                        required
-                        onChange={handleChange}
-                      />
+                    <Select className="select_country" options={options} onChange={(e) => handleCountry(e)} />
+
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
@@ -95,58 +109,11 @@ export const Contact = (props) => {
               </form>
             </div>
           </div>
-          <div className='col-md-3 col-md-offset-1 contact-info'>
-            <div className='contact-item'>
-              <h3>Contact Info</h3>
-              <p>
-                <span>
-                  <i className='fa fa-map-marker'></i> Address
-                </span>
-                addres
-              </p>
-            </div>
-            <div className='contact-item'>
-              <p>
-                <span>
-                  <i className='fa fa-phone'></i> Phone
-                </span>{' '}
-                phone n
-              </p>
-            </div>
-            <div className='contact-item'>
-              <p>
-                <span>
-                  <i className='fa fa-envelope-o'></i> Email
-                </span>{' '}
-                email
-              </p>
-            </div>
-          </div>
-          <div className='col-md-12'>
-            <div className='row'>
-              <div className='social'>
-                <ul>
-                  <li>
-                    <a href="https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8">
-                      <i className='fa fa-facebook'></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8">
-                      <i className='fa fa-twitter'></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8">
-                      <i className='fa fa-youtube'></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          </Grid>
         </div>
+
       </div>
+
       <div id='footer'>
         <div className='container text-center'>
           <p>
@@ -156,6 +123,7 @@ export const Contact = (props) => {
             </a>
           </p>
         </div>
+        
       </div>
     </div>
   )

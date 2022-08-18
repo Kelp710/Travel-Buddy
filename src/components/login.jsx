@@ -43,7 +43,7 @@ export const Login = () => {
           <Grid 
           container
           direction="column"
-          justifyContent="space-around"
+          justifyContent="center"
           alignItems="center"
             >
           <div className="back_box"></div>

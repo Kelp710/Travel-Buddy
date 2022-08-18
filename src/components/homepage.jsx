@@ -8,6 +8,7 @@ import { auth } from '../firebase';
 import {useNavigate, Navigate} from "react-router-dom"
 import "../App.css";
 import axios from "axios";
+import Chat from "../make_db"
 
 export const Home = () => {
 
@@ -45,6 +46,7 @@ export const Home = () => {
         <Navigation />
         <Header/>
         <Countries data={data.Countries}/>
+        <Chat/>
         <Contact />
       </div>
     );
