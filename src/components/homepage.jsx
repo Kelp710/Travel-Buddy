@@ -8,7 +8,6 @@ import { auth } from '../firebase';
 import {useNavigate, Navigate} from "react-router-dom"
 import "../App.css";
 import axios from "axios";
-import Chat from "../make_db"
 
 export const Home = () => {
 
@@ -17,6 +16,11 @@ export const Home = () => {
     const usenavigate = useNavigate();
     const { user } = useAuthContext();
   	const url = "http://127.0.0.1:8000/";
+    const [inputData, setInputData] = useState({
+      country: "",
+      memo:"",
+      img:""
+  });
   
   // console.log(axios.get(url).data)
   
@@ -46,7 +50,6 @@ export const Home = () => {
         <Navigation />
         <Header/>
         <Countries data={data.Countries}/>
-        <Chat/>
         <Contact />
       </div>
     );

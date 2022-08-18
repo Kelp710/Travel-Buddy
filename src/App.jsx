@@ -1,5 +1,5 @@
-import { Fragment } from "react";
 
+import { Fragment } from "react";
 import { Home } from "./components/homepage";
 import { Login } from "./components/login";
 import { SignUp } from "./components/sign";
@@ -20,6 +20,7 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 
 
 const App = () => {
+
   return (
     <AuthProvider>
     <div>

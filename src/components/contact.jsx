@@ -13,10 +13,16 @@ const initialState = {
 export const Contact = (props) => {
   const [{ name, email, message }, setState] = useState(initialState)
   const [country, setCountry] = useState("")
+  const [selectedFile, setSelectedFile] = useState();
+	const [isFilePicked, setIsFilePicked] = useState(false);
+
+	const changeHandler = (event) => {
+		setSelectedFile(URL.createObjectURL(event.target.files[0]));
+		setIsFilePicked(true);
+	};
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setState((prevState) => ({ ...prevState, [name]: value }))
+    console.log(e.target.value)
   }
 
   const clearState = () => setState({ ...initialState })
@@ -47,6 +53,8 @@ export const Contact = (props) => {
       setCountry(e.label);
     };
 
+  console.log(selectedFile);
+
   return (
     <div>
       <div id='contact'>
@@ -66,6 +74,7 @@ export const Contact = (props) => {
                 </p>
               </div>
               <h1>{country}</h1>
+              <img src={selectedFile}></img>
               <form name='sentMessage' validate onSubmit={handleSubmit}>
                 <div className='row'>
                   <div className='col-md-6'>
@@ -77,15 +86,7 @@ export const Contact = (props) => {
                   </div>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                      <input
-                        type='email'
-                        id='email'
-                        name='email'
-                        className='form-control'
-                        placeholder='Email'
-                        required
-                        onChange={handleChange}
-                      />
+                    <input type="file" name="file" onChange={changeHandler} />
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
@@ -128,3 +129,4 @@ export const Contact = (props) => {
     </div>
   )
 }
+
