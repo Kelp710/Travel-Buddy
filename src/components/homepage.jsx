@@ -8,6 +8,8 @@ import { auth } from '../firebase';
 import {useNavigate, Navigate} from "react-router-dom"
 import "../App.css";
 import axios from "axios";
+import { Destinations } from "./destinations";
+import { inputAdornmentClasses } from "@mui/material";
 
 export const Home = () => {
 
@@ -51,6 +53,7 @@ export const Home = () => {
         <Header/>
         <Countries data={data.Countries}/>
         <Contact inputData={inputData} setInputData={setInputData}/>
+        <Destinations inputData={inputData}/>
       </div>
     );
 }

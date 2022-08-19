@@ -35,8 +35,6 @@ export const Contact = ({inputData, setInputData}) => {
   //   setMessage(e.target.value)
   // }
 const handleChange = (e) => {
-  console.log(e)
-
   // {e.target.name=="file" ? (setInputData((prevState) => ({ ...prevState, "file": e.target.files[0] }))): setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))}
   // console.log(inputData)
     if (e.target.name=="file"){ 
@@ -49,7 +47,7 @@ const handleChange = (e) => {
   }
   else {
     setInputData("")
-    setInputData((prevState) => ({ ...prevState, "country": e }))
+    setInputData((prevState) => ({ ...prevState, "country": e.label }))
     console.log(inputData);}
   }
 
