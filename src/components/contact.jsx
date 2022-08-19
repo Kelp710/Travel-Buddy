@@ -15,14 +15,23 @@ export const Contact = (props) => {
   const [country, setCountry] = useState("")
   const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
+  const [memo, setMessage] = useState("")
 
-	const changeHandler = (event) => {
-		setSelectedFile(URL.createObjectURL(event.target.files[0]));
+  
+  const options = 
+    countryList.map((country, id) =>(
+    { value: {id}.id, label: {country}.country }),)
+  
+  const handleCountry = e => {
+      setCountry(e.label);
+    };
+
+	const changeImg = (e) => {
+		setSelectedFile(URL.createObjectURL(e.target.files[0]));
 		setIsFilePicked(true);
 	};
-
-  const handleChange = (e) => {
-    console.log(e.target.value)
+  const changeMemo = (e) => {
+    setMessage(e.target.value)
   }
 
   const clearState = () => setState({ ...initialState })
@@ -45,15 +54,6 @@ export const Contact = (props) => {
       )
   }
 
-  const options = 
-    countryList.map((country, id) =>(
-    { value: {id}.id, label: {country}.country }),)
-  
-  const handleCountry = e => {
-      setCountry(e.label);
-    };
-
-  console.log(selectedFile);
 
   return (
     <div>
@@ -86,7 +86,7 @@ export const Contact = (props) => {
                   </div>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                    <input type="file" name="file" onChange={changeHandler} />
+                    <input type="file" name="file" onChange={changeImg} />
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
@@ -99,7 +99,7 @@ export const Contact = (props) => {
                     rows='4'
                     placeholder='Message'
                     required
-                    onChange={handleChange}
+                    onChange={changeMemo}
                   ></textarea>
                   <p className='help-block text-danger'></p>
                 </div>
