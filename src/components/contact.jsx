@@ -3,6 +3,7 @@ import emailjs from 'emailjs-com'
 import Grid from '@mui/material/Grid';
 import Select from 'react-select'
 import countryList from "../data"
+import { connectFirestoreEmulator } from 'firebase/firestore';
 
 const initialState = {
   name: '',
@@ -10,31 +11,47 @@ const initialState = {
   message: '',
 }
 
-export const Contact = (props) => {
+export const Contact = ({inputData, setInputData}) => {
   const [{ name, email, message }, setState] = useState(initialState)
   const [country, setCountry] = useState("")
-  const [selectedFile, setSelectedFile] = useState();
-	const [isFilePicked, setIsFilePicked] = useState(false);
-  const [memo, setMessage] = useState("")
+	// const [isFilePicked, setIsFilePicked] = useState(false);
+
 
   
   const options = 
     countryList.map((country, id) =>(
-    { value: {id}.id, label: {country}.country }),)
+    { id: {id}.id, label: {country}.country, "target": {"name":"country"} }),)
   
   const handleCountry = e => {
       setCountry(e.label);
+      console.log(country)
     };
 
-	const changeImg = (e) => {
-		setSelectedFile(URL.createObjectURL(e.target.files[0]));
-		setIsFilePicked(true);
-	};
-  const changeMemo = (e) => {
-    setMessage(e.target.value)
-  }
+	// const changeImg = (e) => {
+	// 	setSelectedFile(URL.createObjectURL(e.target.files[0]));
+	// 	setIsFilePicked(true);
+	// };
+  // const changeMemo = (e) => {
+  //   setMessage(e.target.value)
+  // }
+const handleChange = (e) => {
+  console.log(e)
 
-  const clearState = () => setState({ ...initialState })
+  // {e.target.name=="file" ? (setInputData((prevState) => ({ ...prevState, "file": e.target.files[0] }))): setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))}
+  // console.log(inputData)
+    if (e.target.name=="file"){ 
+      const file = e.target.files[0]
+      setInputData((prevState) => ({ ...prevState, "file": file }))
+      console.log(inputData)
+    }else if(e.target.name=="memo"){
+    setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))
+    console.log(inputData)
+  }
+  else {
+    setInputData("")
+    setInputData((prevState) => ({ ...prevState, "country": e }))
+    console.log(inputData);}
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -54,6 +71,7 @@ export const Contact = (props) => {
       )
   }
 
+  const clearState = () => setState({ ...initialState })
 
   return (
     <div>
@@ -73,33 +91,37 @@ export const Contact = (props) => {
                   Add a country you wanna go with memo and Image
                 </p>
               </div>
-              <h1>{country}</h1>
-              <img src={selectedFile}></img>
               <form name='sentMessage' validate onSubmit={handleSubmit}>
                 <div className='row'>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                    <Select className="select_country" options={options} onChange={(e) => handleCountry(e)} />
+                    <Select 
+                    className="select_country" 
+                    type="text" 
+                    name='country' 
+                    options={options} 
+                    getOptionValue={option => option.id}
+                    onChange={handleChange} />
 
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                    <input type="file" name="file" onChange={changeImg} />
+                    <input type="file" name="file" onChange={handleChange} />
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
                 </div>
                 <div className='form-group'>
                   <textarea
-                    name='message'
-                    id='message'
+                    name='memo'
+                    id='memo'
                     className='form-control'
                     rows='4'
                     placeholder='Message'
                     required
-                    onChange={changeMemo}
+                    onChange={handleChange}
                   ></textarea>
                   <p className='help-block text-danger'></p>
                 </div>

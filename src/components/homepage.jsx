@@ -17,9 +17,9 @@ export const Home = () => {
     const { user } = useAuthContext();
   	const url = "http://127.0.0.1:8000/";
     const [inputData, setInputData] = useState({
-      country: "",
+      file:"",
       memo:"",
-      img:""
+      country:"",
   });
   
   // console.log(axios.get(url).data)
@@ -50,7 +50,7 @@ export const Home = () => {
         <Navigation />
         <Header/>
         <Countries data={data.Countries}/>
-        <Contact />
+        <Contact inputData={inputData} setInputData={setInputData}/>
       </div>
     );
 }
