@@ -13,7 +13,6 @@ const initialState = {
 
 export const Contact = ({inputData, setInputData}) => {
   const [{ name, email, message }, setState] = useState(initialState)
-  const [country, setCountry] = useState("")
 	// const [isFilePicked, setIsFilePicked] = useState(false);
 
 
@@ -22,11 +21,7 @@ export const Contact = ({inputData, setInputData}) => {
     countryList.map((country, id) =>(
     { id: {id}.id, label: {country}.country, "target": {"name":"country"} }),)
   
-  const handleCountry = e => {
-      setCountry(e.label);
-      console.log(country)
-    };
-
+  
 	// const changeImg = (e) => {
 	// 	setSelectedFile(URL.createObjectURL(e.target.files[0]));
 	// 	setIsFilePicked(true);
@@ -38,7 +33,7 @@ const handleChange = (e) => {
   // {e.target.name=="file" ? (setInputData((prevState) => ({ ...prevState, "file": e.target.files[0] }))): setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))}
   // console.log(inputData)
     if (e.target.name=="file"){ 
-      const file = e.target.files[0]
+      const file = URL.createObjectURL(e.target.files[0])
       setInputData((prevState) => ({ ...prevState, "file": file }))
       console.log(inputData)
     }else if(e.target.name=="memo"){
