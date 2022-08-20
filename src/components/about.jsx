@@ -1,9 +1,6 @@
 
 export const Countries = (props) => {
 
-
-    
-  console.log(props.data)
   return (
     <div id="about">
       <ul>
