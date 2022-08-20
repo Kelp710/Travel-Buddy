@@ -4,6 +4,10 @@ import Grid from '@mui/material/Grid';
 import Select from 'react-select'
 import countryList from "../data"
 import { connectFirestoreEmulator } from 'firebase/firestore';
+import { useAuthContext } from '../context/authcontext';
+import { auth, db } from '../firebase';
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+
 
 const initialState = {
   name: '',
@@ -14,6 +18,7 @@ const initialState = {
 export const Contact = ({inputData, setInputData}) => {
   const [{ name, email, message }, setState] = useState(initialState)
 	// const [isFilePicked, setIsFilePicked] = useState(false);
+  const {user}=useAuthContext()
 
 
   
@@ -30,25 +35,36 @@ export const Contact = ({inputData, setInputData}) => {
   //   setMessage(e.target.value)
   // }
 const handleChange = (e) => {
-  // {e.target.name=="file" ? (setInputData((prevState) => ({ ...prevState, "file": e.target.files[0] }))): setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))}
-  // console.log(inputData)
     if (e.target.name=="file"){ 
       const file = URL.createObjectURL(e.target.files[0])
       setInputData((prevState) => ({ ...prevState, "file": file }))
       console.log(inputData)
     }else if(e.target.name=="memo"){
     setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))
-    console.log(inputData)
   }
   else {
-    setInputData("")
+    setInputData((prevState) => ({ ...prevState, "country": null }))
     setInputData((prevState) => ({ ...prevState, "country": e.label }))
     console.log(inputData);}
   }
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log(inputData)
+    try {
+    await addDoc(collection(db, "users"), {
+    user: user.multiFactor.user.uid,
+    country: inputData.country,
+    memo: inputData.memo,
+    file: inputData.file
+    });
+    } catch (error) {
+    console.log(error);
+    }
+    };
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(name, email, message)
     emailjs
       .sendForm(
         'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID'
@@ -84,7 +100,8 @@ const handleChange = (e) => {
                   Add a country you wanna go with memo and Image
                 </p>
               </div>
-              <form name='sentMessage' validate onSubmit={handleSubmit}>
+              <img src={inputData.file}></img>
+              <form name='sentMessage' validate onSubmit={onSubmit}>
                 <div className='row'>
                   <div className='col-md-6'>
                     <div className='form-group'>
@@ -144,4 +161,3 @@ const handleChange = (e) => {
     </div>
   )
 }
-

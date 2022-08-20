@@ -61,7 +61,7 @@ export const Login = () => {
                        <input name="password" type="password" className='input_box' onChange={(event) => handleChangePassword(event)}/>
                     </div>
                  </div>
-                 <button className='login_button btn-custom '>Log In{password}</button>
+                 <button className='login_button btn-custom '>Log In</button>
                  <hr className='login_line'/>
                  <button onClick={handleLogin} className="google_button btn-custom"><FcGoogle/> Log in</button>
               <div className='sign_new'>
