@@ -5,26 +5,53 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useState, useEffect } from 'react'
 import { auth, db } from '../firebase';
 import { useAuthContext } from '../context/authcontext';
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore/lite";
 
 export const Destinations = () => {
   const {user}=useAuthContext()
   const user_id = user.multiFactor.user.uid
+  const [books, setBooks] = useState([])
   
-  const citiesRef = db.collection('users');
-  console.log(citiesRef)
+  useEffect(() => {
+    const docRef = query(collection(db, "users"),where("memo", '==', `test`))
+
   
-  const snapshot = async() => await citiesRef.where('memo', '==', "sos").get();
-  if (snapshot.empty) {
-    console.log('No matching documents.');
-    return;
-  }
-  console.log(snapshot)
-  Array.snapshot.forEach(doc => {
-    console.log(doc.id, '=>', doc.data());
-  });
+    getDocs(docRef).then(snapshot => {
+      let results = []
+  
+      snapshot.docs.forEach(doc => {
+        console.log(doc.data())
+        results.push({ id: doc.id, ...doc.data() })
+      })
+      setBooks(results)
+    })
+  }, [])
+
+  // const q = query(collection(db, "users"), where("memo", "==", "test"));
+
+  // const querySnapshot = async() =>{
+  //   console.log(await getDocs(q).er)
+  
+  // querySnapshot.forEach((doc) => {
+  //   // doc.data() is never undefined for query doc snapshots
+  //   console.log(doc.id, " => ", doc.data());
+  // });}
+
+
+  // const snapshot = async() => await citiesRef.where('memo', '==', "sos").get();
+  // if (snapshot.empty) {
+  //   console.log('No matching documents.');
+  //   return;
+  // }
+  // console.log(snapshot)  
+  // Array.snapshot.forEach(doc => {
+  //   console.log(doc.id, '=>', doc.data());
+  // });
+
+
 //   const citiesRef = collection(db,'users');
 // const snapshot = await citiesRef.where('user_id', '==', user_id).get();
 // if (snapshot.empty) {
@@ -44,6 +71,7 @@ export const Destinations = () => {
           alt="green iguana"
         />
         <CardContent>
+
           <Typography gutterBottom variant="h5" component="div">
            " destination.country"
           </Typography>

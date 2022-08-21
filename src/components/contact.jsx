@@ -9,15 +9,7 @@ import { auth, db } from '../firebase';
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 
 
-const initialState = {
-  name: '',
-  email: '',
-  message: '',
-}
-
 export const Contact = ({inputData, setInputData}) => {
-  const [{ name, email, message }, setState] = useState(initialState)
-	// const [isFilePicked, setIsFilePicked] = useState(false);
   const {user}=useAuthContext()
 
 
@@ -43,7 +35,7 @@ const handleChange = (e) => {
     setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))
   }
   else {
-    setInputData((prevState) => ({ ...prevState, "country": null }))
+    setInputData((prevState) => ({ ...prevState, "country": "" }))
     setInputData((prevState) => ({ ...prevState, "country": e.label }))
     console.log(inputData);}
   }
@@ -61,26 +53,8 @@ const handleChange = (e) => {
     } catch (error) {
     console.log(error);
     }
+    console.log(inputData)
     };
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    emailjs
-      .sendForm(
-        'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID'
-      )
-      .then(
-        (result) => {
-          console.log(result.text)
-          clearState()
-        },
-        (error) => {
-          console.log(error.text)
-        }
-      )
-  }
-
-  const clearState = () => setState({ ...initialState })
 
   return (
     <div>
@@ -109,7 +83,7 @@ const handleChange = (e) => {
                     className="select_country" 
                     type="text" 
                     name='country' 
-                    options={options} 
+                     options={options}
                     getOptionValue={option => option.id}
                     onChange={handleChange} />
 
@@ -127,6 +101,7 @@ const handleChange = (e) => {
                   <textarea
                     name='memo'
                     id='memo'
+                    value={inputData.memo}
                     className='form-control'
                     rows='4'
                     placeholder='Message'
