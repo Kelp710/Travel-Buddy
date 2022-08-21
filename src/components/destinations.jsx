@@ -10,26 +10,27 @@ import { auth, db } from '../firebase';
 import { useAuthContext } from '../context/authcontext';
 import { getFirestore, collection, query, where, getDocs } from "firebase/firestore/lite";
 
+
 export const Destinations = () => {
-  const {user}=useAuthContext()
+const {user}=useAuthContext()
   const user_id = user.multiFactor.user.uid
-  const [books, setBooks] = useState([])
+  const [destinations, setDestinations] = useState([])
   
   useEffect(() => {
-    const docRef = query(collection(db, "users"),where("memo", '==', `test`))
+    const docRef = query(collection(db, "users"),where("user", '==', user_id))
 
   
     getDocs(docRef).then(snapshot => {
       let results = []
   
       snapshot.docs.forEach(doc => {
-        console.log(doc.data())
         results.push({ id: doc.id, ...doc.data() })
+
       })
-      setBooks(results)
+      setDestinations(results)
     })
   }, [])
-
+  console.log(destinations)
   // const q = query(collection(db, "users"), where("memo", "==", "test"));
 
   // const querySnapshot = async() =>{
@@ -62,27 +63,40 @@ export const Destinations = () => {
 // snapshot.forEach(doc => {
 //   console.log(doc.id, '=>', doc.data());
 // });
-    return (
-      <Card sx={{ maxWidth: 345 }}>
+const styles = {
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9,
+    marginTop:'30'
+  }
+};
+    return (<div>
+
+      {destinations.map((d, i)=>(
+       
+      <Card sx={{ maxWidth: 345 }} key={i}>
+         <h2>{d.file}</h2>
         <CardMedia
           component="img"
           height="140"
-          image="img.jpg"
+          src= {d.file}
           alt="green iguana"
+          style={styles}
         />
         <CardContent>
 
           <Typography gutterBottom variant="h5" component="div">
-           " destination.country"
+          {d.country}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            "destination.memo"
+            {d.memo}
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>
           <Button size="small">Learn More</Button>
         </CardActions>
-      </Card>
+      </Card>        ))}
+      </div>
     );
   }

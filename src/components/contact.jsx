@@ -5,8 +5,8 @@ import Select from 'react-select'
 import countryList from "../data"
 import { connectFirestoreEmulator } from 'firebase/firestore';
 import { useAuthContext } from '../context/authcontext';
-import { auth, db } from '../firebase';
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { db } from '../firebase';
+import { collection, addDoc } from "firebase/firestore/lite";
 
 
 export const Contact = ({inputData, setInputData}) => {
@@ -36,13 +36,11 @@ const handleChange = (e) => {
   }
   else {
     setInputData((prevState) => ({ ...prevState, "country": "" }))
-    setInputData((prevState) => ({ ...prevState, "country": e.label }))
-    console.log(inputData);}
+    setInputData((prevState) => ({ ...prevState, "country": e.label }))}
   }
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputData)
     try {
     await addDoc(collection(db, "users"), {
     user: user.multiFactor.user.uid,
@@ -83,7 +81,8 @@ const handleChange = (e) => {
                     className="select_country" 
                     type="text" 
                     name='country' 
-                     options={options}
+
+                    options={options}
                     getOptionValue={option => option.id}
                     onChange={handleChange} />
 
