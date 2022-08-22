@@ -691,17 +691,17 @@ label {
   background: #fff;
 }
 /* Destination Section */
-#destinations{
+#destinations .cards{
   position: relative;
+  margin: 30px;
 }
 #destinations .my_card{
-  margin: 80px;
+  margin: 50px;
 }
 /* Footer Section*/
 #destinations #footer {
   background: #f6f6f6;
   padding: 30px 0;
-
   width: 100%;
 }
 #footer p {

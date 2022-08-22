@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useState, useEffect } from 'react'
 import { auth, db } from '../firebase';
 import { useAuthContext } from '../context/authcontext';
-import { getFirestore, collection, query, where, getDocs, orderBy } from "firebase/firestore/lite";
+import { getFirestore, collection, query, where, getDocs, orderBy, deleteDoc, doc } from "firebase/firestore/lite";
 import Grid from '@mui/material/Grid';
 
 
@@ -16,7 +16,15 @@ export const Destinations = () => {
 const {user}=useAuthContext()
   const user_id = user.multiFactor.user.uid
   const [destinations, setDestinations] = useState([])
-  
+
+  const deleteCard= async (e) =>{
+    const doc_id =e.target.attributes[0].nodeValue
+    console.log(doc_id)
+    const docRef = doc(db, "users", doc_id)
+    await deleteDoc(docRef)
+
+  }
+
   useEffect( async() => {
     const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
     // .orderBy('population')
@@ -32,38 +40,8 @@ const {user}=useAuthContext()
       setDestinations(results)
     })
   }, [])
-  // const q = query(collection(db, "users"), where("memo", "==", "test"));
+  console.log(destinations)
 
-  // const querySnapshot = async() =>{
-  //   console.log(await getDocs(q).er)
-  
-  // querySnapshot.forEach((doc) => {
-  //   // doc.data() is never undefined for query doc snapshots
-  //   console.log(doc.id, " => ", doc.data());
-  // });}
-
-
-  // const snapshot = async() => await citiesRef.where('memo', '==', "sos").get();
-  // if (snapshot.empty) {
-  //   console.log('No matching documents.');
-  //   return;
-  // }
-  // console.log(snapshot)  
-  // Array.snapshot.forEach(doc => {
-  //   console.log(doc.id, '=>', doc.data());
-  // });
-
-
-//   const citiesRef = collection(db,'users');
-// const snapshot = await citiesRef.where('user_id', '==', user_id).get();
-// if (snapshot.empty) {
-//   console.log('No matching documents.');
-//   return;
-// }
-
-// snapshot.forEach(doc => {
-//   console.log(doc.id, '=>', doc.data());
-// });
 const styles = {
   media: {
     height: 0,
@@ -75,8 +53,10 @@ const styles = {
     <div className='cards '>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
       {destinations.map((d, i)=>(
+        <div key={i}>
         <Grid item xs={12} sm={6} md={4}>
-      <Card sx={{ maxWidth: 345 }} key={i} className="my_card">
+      <button name={d.id} onClick={(e)=> deleteCard(e)}>x</button>
+      <Card sx={{ maxWidth: 345 }} className="my_card">
         <CardMedia
           component="img"
           height="140"
@@ -84,6 +64,7 @@ const styles = {
           alt="green iguana"
           style={styles}
         />
+
         <CardContent>
           {d.point}
           <Typography gutterBottom variant="h5" component="div">
@@ -99,6 +80,7 @@ const styles = {
         </CardActions> 
       </Card>    
       </Grid>
+      </div>
           ))}
           </Grid>
           </div>
