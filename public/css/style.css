@@ -709,6 +709,20 @@ label {
   width: auto;
   width: 500px;
 }
+#destinations .delete_button{
+  color: white;
+  border: 0;
+  background-color: orangered;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  font-size: 10px;
+  margin-right: 3px;
+  position: relative;
+  left: 370px;
+  top: 76px;
+  opacity: 0.9;
+}
 /* Footer Section*/
 #destinations #footer {
   background: #f6f6f6;

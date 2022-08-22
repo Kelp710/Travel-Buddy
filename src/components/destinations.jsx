@@ -44,14 +44,14 @@ export const Destinations = () => {
       marginTop:'30'
     }
   };
-
+console.log(destinations)
   return (<div id='destinations'>
     <div className='cards '>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
       {destinations.map((d, i)=>(
         <div key={i}>
         <Grid item xs={12} sm={6} md={4}>
-      <button name={d.id} onClick={(e)=> deleteCard(e)}>x</button>
+      <button name={d.id} onClick={(e)=> deleteCard(e)} className="delete_button"></button>
       <Card sx={{ maxWidth: 345 }} className="my_card">
         <CardMedia
           component="img"
