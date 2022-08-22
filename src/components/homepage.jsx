@@ -22,6 +22,7 @@ export const Home = () => {
       file:"",
       memo:"",
       country:"",
+      country_pic:""
   });
   
   // console.log(axios.get(url).data)

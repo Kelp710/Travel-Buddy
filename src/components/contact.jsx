@@ -11,6 +11,10 @@ import { collection, addDoc } from "firebase/firestore/lite";
 
 export const Contact = ({inputData, setInputData}) => {
   const {user}=useAuthContext()
+  const [img, setImg] = useState("");
+const [res, setRes] = useState([]);
+
+
 
 
   
@@ -26,7 +30,8 @@ export const Contact = ({inputData, setInputData}) => {
   // const changeMemo = (e) => {
   //   setMessage(e.target.value)
   // }
-const handleChange = (e) => {
+
+const handleChange = async(e) => {
   console.log(inputData)
   if (e.target.name ==="point"){
     setInputData((prevState) => ({ ...prevState, "point": e.target.value }))
@@ -36,19 +41,35 @@ const handleChange = (e) => {
   }
   else {
     setInputData((prevState) => ({ ...prevState, "country": "" }))
-    setInputData((prevState) => ({ ...prevState, "country": e.label }))}
+    setInputData((prevState) => ({ ...prevState, "country": e.label }))
+    const data = await fetch(
+      `https://api.unsplash.com/search/photos?page=1&query=${e.label}&client_id=BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA&order_by=popular&orientation=landscape&count=1&per_page=4&content_filter=high`
+    );
+    data.json().then(snapshot => {
+      setInputData((prevState) => ({ ...prevState, "country_pic": snapshot.results[0].urls.raw }))
+    })}
+    console.log(inputData)
   }
+  // const fetchRequest = async () => {
+  //   const data = await fetch(
+  //     `https://api.unsplash.com/search/photos?page=1&query=${inputData.country}&client_id=BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA`
+  //   );
+  //   const dataJ= async() => await data.json();
+  //   const result = dataJ.results;
+  //   console.log(result);
+  //   setRes(result);
+  // };
 
   const onSubmit = async (e) => {
     console.log(e)
-    
     e.preventDefault();
     try {
     await addDoc(collection(db, "users"), {
     user: user.multiFactor.user.uid,
     country: inputData.country,
     memo: inputData.memo,
-    point: inputData.point
+    point: inputData.point,
+    country_pic: inputData.country_pic
     });
     } catch (error) {
     console.log(error);

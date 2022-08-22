@@ -19,7 +19,6 @@ const {user}=useAuthContext()
   
   useEffect( async() => {
     const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
-    console.log(getDocs(docRef))
     // .orderBy('population')
   
     getDocs(docRef).then(snapshot => {
@@ -33,8 +32,6 @@ const {user}=useAuthContext()
       setDestinations(results)
     })
   }, [])
-  console.log(destinations)
-
   // const q = query(collection(db, "users"), where("memo", "==", "test"));
 
   // const querySnapshot = async() =>{
@@ -83,7 +80,7 @@ const styles = {
         <CardMedia
           component="img"
           height="140"
-          src= "dede"
+          src= {d.country_pic}
           alt="green iguana"
           style={styles}
         />
@@ -97,7 +94,7 @@ const styles = {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Share</Button>
+          <Button size="small" href={`https://en.wikipedia.org/wiki/${d.country}`}>Wiki</Button>
           <Button size="small">Learn More</Button>
         </CardActions> 
       </Card>    
