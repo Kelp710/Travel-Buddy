@@ -691,12 +691,23 @@ label {
   background: #fff;
 }
 /* Destination Section */
+#destinations{
+}
 #destinations .cards{
   position: relative;
   margin: 30px;
+  padding-left: 6%;
 }
 #destinations .my_card{
   margin: 50px;
+  width: 500px;
+  height: 450px;
+}
+#destinations .card_pic{
+  height: auto;
+  height: 250px;
+  width: auto;
+  width: 500px;
 }
 /* Footer Section*/
 #destinations #footer {

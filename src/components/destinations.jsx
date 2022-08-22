@@ -11,44 +11,40 @@ import { useAuthContext } from '../context/authcontext';
 import { getFirestore, collection, query, where, getDocs, orderBy, deleteDoc, doc } from "firebase/firestore/lite";
 import Grid from '@mui/material/Grid';
 
-
 export const Destinations = () => {
-const {user}=useAuthContext()
-  const user_id = user.multiFactor.user.uid
-  const [destinations, setDestinations] = useState([])
+  const {user}=useAuthContext()
+    const user_id = user.multiFactor.user.uid
+    const [destinations, setDestinations] = useState([])
 
-  const deleteCard= async (e) =>{
-    const doc_id =e.target.attributes[0].nodeValue
-    console.log(doc_id)
-    const docRef = doc(db, "users", doc_id)
-    await deleteDoc(docRef)
+    const deleteCard= async (e) =>{
+      const doc_id =e.target.attributes[0].nodeValue
+      const docRef = doc(db, "users", doc_id)
+      await deleteDoc(docRef)
 
-  }
+    }
 
-  useEffect( async() => {
-    const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
-    // .orderBy('population')
-  
-    getDocs(docRef).then(snapshot => {
-      let results = []
-  
-      snapshot.docs.forEach(doc => {
-        console.log(doc)
-        results.push({ id: doc.id, ...doc.data() })
+    useEffect( async() => {
+      const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
+      // .orderBy('population')
+    
+      getDocs(docRef).then(snapshot => {
+        let results = []
+        snapshot.docs.forEach(doc => {
+          results.push({ id: doc.id, ...doc.data() })
 
+        })
+        setDestinations(results)
       })
-      setDestinations(results)
-    })
   }, [])
-  console.log(destinations)
 
-const styles = {
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9,
-    marginTop:'30'
-  }
-};
+  const styles = {
+    media: {
+      height: 0,
+      paddingTop: '56.25%', // 16:9,
+      marginTop:'30'
+    }
+  };
+
   return (<div id='destinations'>
     <div className='cards '>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
@@ -59,18 +55,15 @@ const styles = {
       <Card sx={{ maxWidth: 345 }} className="my_card">
         <CardMedia
           component="img"
-          height="140"
           src= {d.country_pic}
-          alt="green iguana"
-          style={styles}
+          alt="Destinations_of_mine"
+          className="card_pic"
         />
-
         <CardContent>
-          {d.point}
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h3" component="div" >
           {d.country}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="h5" color="text.secondary">
             {d.memo}
           </Typography>
         </CardContent>

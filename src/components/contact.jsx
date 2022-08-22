@@ -8,28 +8,15 @@ import { useAuthContext } from '../context/authcontext';
 import { db } from '../firebase';
 import { collection, addDoc } from "firebase/firestore/lite";
 
-
 export const Contact = ({inputData, setInputData}) => {
   const {user}=useAuthContext()
   const [img, setImg] = useState("");
-const [res, setRes] = useState([]);
-
-
-
-
+  const [res, setRes] = useState([]);
   
   const options = 
     countryList.map((country, id) =>(
     { id: {id}.id, label: {country}.country, "target": {"name":"country"} }),)
   
-  
-	// const changeImg = (e) => {
-	// 	setSelectedFile(URL.createObjectURL(e.target.files[0]));
-	// 	setIsFilePicked(true);
-	// };
-  // const changeMemo = (e) => {
-  //   setMessage(e.target.value)
-  // }
 
 const handleChange = async(e) => {
   console.log(inputData)
@@ -50,18 +37,8 @@ const handleChange = async(e) => {
     })}
     console.log(inputData)
   }
-  // const fetchRequest = async () => {
-  //   const data = await fetch(
-  //     `https://api.unsplash.com/search/photos?page=1&query=${inputData.country}&client_id=BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA`
-  //   );
-  //   const dataJ= async() => await data.json();
-  //   const result = dataJ.results;
-  //   console.log(result);
-  //   setRes(result);
-  // };
 
   const onSubmit = async (e) => {
-    console.log(e)
     e.preventDefault();
     try {
     await addDoc(collection(db, "users"), {
@@ -74,7 +51,6 @@ const handleChange = async(e) => {
     } catch (error) {
     console.log(error);
     }
-    console.log(inputData)
     };
 
   return (
@@ -127,6 +103,7 @@ const handleChange = async(e) => {
                     rows='4'
                     placeholder='Message'
                     required
+                    maxlength="140"
                     onChange={handleChange}
                   ></textarea>
                   <p className='help-block text-danger'></p>
