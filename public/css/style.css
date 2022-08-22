@@ -690,10 +690,22 @@ label {
   color: #608dfd;
   background: #fff;
 }
+/* Destination Section */
+#destinations{
+  position: relative;
+}
+#destinations .my_card{
+  margin: 80px;
+}
 /* Footer Section*/
-#footer {
+#destinations #footer {
   background: #f6f6f6;
   padding: 30px 0;
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+  width: 100%;
 }
 #footer p {
   color: #888;

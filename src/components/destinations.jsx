@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import { auth, db } from '../firebase';
 import { useAuthContext } from '../context/authcontext';
 import { getFirestore, collection, query, where, getDocs, orderBy } from "firebase/firestore/lite";
+import Grid from '@mui/material/Grid';
 
 
 export const Destinations = () => {
@@ -73,11 +74,12 @@ const styles = {
     marginTop:'30'
   }
 };
-    return (<div>
-
+  return (<div id='destinations'>
+    <div className='cards '>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
       {destinations.map((d, i)=>(
-       
-      <Card sx={{ maxWidth: 345 }} key={i}>
+        <Grid item xs={12} sm={6} md={4}>
+      <Card sx={{ maxWidth: 345 }} key={i} className="my_card">
         <CardMedia
           component="img"
           height="140"
@@ -97,9 +99,13 @@ const styles = {
         <CardActions>
           <Button size="small">Share</Button>
           <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>        ))}
-      <div id='footer'>
+        </CardActions> 
+      </Card>    
+      </Grid>
+          ))}
+          </Grid>
+          </div>
+       <footer id='footer'>
         <div className='container text-center'>
           <p>
             &copy; 2020 Issaaf Kattan React Land Page Template. Design by{' '}
@@ -108,8 +114,7 @@ const styles = {
             </a>
           </p>
         </div>
-        
-      </div>
-      </div>
+        </footer>
+    </div>
     );
   }
