@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useState, useEffect } from 'react'
 import { auth, db } from '../firebase';
 import { useAuthContext } from '../context/authcontext';
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore/lite";
+import { getFirestore, collection, query, where, getDocs, orderBy } from "firebase/firestore/lite";
 
 
 export const Destinations = () => {
@@ -16,14 +16,16 @@ const {user}=useAuthContext()
   const user_id = user.multiFactor.user.uid
   const [destinations, setDestinations] = useState([])
   
-  useEffect(() => {
-    const docRef = query(collection(db, "users"),where("user", '==', user_id))
-
+  useEffect( async() => {
+    const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
+    console.log(getDocs(docRef))
+    // .orderBy('population')
   
     getDocs(docRef).then(snapshot => {
       let results = []
   
       snapshot.docs.forEach(doc => {
+        console.log(doc)
         results.push({ id: doc.id, ...doc.data() })
 
       })
@@ -31,6 +33,7 @@ const {user}=useAuthContext()
     })
   }, [])
   console.log(destinations)
+
   // const q = query(collection(db, "users"), where("memo", "==", "test"));
 
   // const querySnapshot = async() =>{
@@ -75,16 +78,15 @@ const styles = {
       {destinations.map((d, i)=>(
        
       <Card sx={{ maxWidth: 345 }} key={i}>
-         <h2>{d.file}</h2>
         <CardMedia
           component="img"
           height="140"
-          src= {d.file}
+          src= "dede"
           alt="green iguana"
           style={styles}
         />
         <CardContent>
-
+          {d.point}
           <Typography gutterBottom variant="h5" component="div">
           {d.country}
           </Typography>

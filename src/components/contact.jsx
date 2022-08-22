@@ -27,11 +27,11 @@ export const Contact = ({inputData, setInputData}) => {
   //   setMessage(e.target.value)
   // }
 const handleChange = (e) => {
-    if (e.target.name=="file"){ 
-      const file = URL.createObjectURL(e.target.files[0])
-      setInputData((prevState) => ({ ...prevState, "file": file }))
-      console.log(inputData)
-    }else if(e.target.name=="memo"){
+  console.log(inputData)
+  if (e.target.name ==="point"){
+    setInputData((prevState) => ({ ...prevState, "point": e.target.value }))
+  }
+    else if(e.target.name=="memo"){
     setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))
   }
   else {
@@ -40,13 +40,15 @@ const handleChange = (e) => {
   }
 
   const onSubmit = async (e) => {
+    console.log(e)
+    
     e.preventDefault();
     try {
     await addDoc(collection(db, "users"), {
     user: user.multiFactor.user.uid,
     country: inputData.country,
     memo: inputData.memo,
-    file: inputData.file
+    point: inputData.point
     });
     } catch (error) {
     console.log(error);
@@ -72,7 +74,6 @@ const handleChange = (e) => {
                   Add a country you wanna go with memo and Image
                 </p>
               </div>
-              <img src={inputData.file}></img>
               <form name='sentMessage' validate onSubmit={onSubmit}>
                 <div className='row'>
                   <div className='col-md-6'>
@@ -91,7 +92,7 @@ const handleChange = (e) => {
                   </div>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                    <input type="file" name="file" onChange={handleChange} />
+                    <input type="number" min="0" max="100" name="point" required className='point' onChange={handleChange} />
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
