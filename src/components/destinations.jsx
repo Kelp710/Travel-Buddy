@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useState, useEffect } from 'react'
 import { auth, db } from '../firebase';
 import { useAuthContext } from '../context/authcontext';
-import { getFirestore, collection, query, where, getDocs, orderBy, deleteDoc, doc } from "firebase/firestore/lite";
+import { getFirestore, collection, query, where, getDocs, orderBy, deleteDoc, doc,onSnapshot, refEqual } from "firebase/firestore";
 import Grid from '@mui/material/Grid';
 
 export const Destinations = () => {
@@ -25,16 +25,28 @@ export const Destinations = () => {
 
     useEffect( async() => {
       const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
-      // .orderBy('population')
-    
-      getDocs(docRef).then(snapshot => {
-        let results = []
-        snapshot.docs.forEach(doc => {
-          results.push({ id: doc.id, ...doc.data() })
-
-        })
+      const unsubscribe = onSnapshot(docRef, (querySnapshot) => {
+        const results = [];
+        querySnapshot.forEach((doc) => {
+          console.log(doc)
+      results.push({ id: doc.id, ...doc.data() })
+        });
         setDestinations(results)
-      })
+      });
+      // const observer = query.onSnapshot(querySnapshot => {
+      //   console.log(querySnapshot);
+      // }, err => {
+      //   console.log(`Encountered error: ${err}`);
+      // });
+      // const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
+      // getDocs(docRef).then(snapshot => {
+      //   let results = []
+      //   snapshot.docs.forEach(doc => {
+      //     results.push({ id: doc.id, ...doc.data() })
+
+      //   })
+      //   setDestinations(results)
+      // })
   }, [])
 
   const styles = {
@@ -64,7 +76,7 @@ console.log(destinations)
           {d.country}
           </Typography>
           <Typography variant="h5" color="text.secondary">
-            {d.memo}
+            {d.point}
           </Typography>
         </CardContent>
         <CardActions>

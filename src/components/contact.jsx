@@ -6,7 +6,7 @@ import countryList from "../data"
 import { connectFirestoreEmulator } from 'firebase/firestore';
 import { useAuthContext } from '../context/authcontext';
 import { db } from '../firebase';
-import { collection, addDoc } from "firebase/firestore/lite";
+import { collection, addDoc } from "firebase/firestore";
 
 export const Contact = ({inputData, setInputData}) => {
   const {user}=useAuthContext()
@@ -21,6 +21,7 @@ export const Contact = ({inputData, setInputData}) => {
 const handleChange = async(e) => {
   console.log(inputData)
   if (e.target.name ==="point"){
+    console.log(e)
     setInputData((prevState) => ({ ...prevState, "point": e.target.value }))
   }
     else if(e.target.name=="memo"){
