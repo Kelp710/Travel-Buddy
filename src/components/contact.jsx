@@ -40,13 +40,15 @@ const handleChange = async(e) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(e.timeStamp)
     try {
     await addDoc(collection(db, "users"), {
     user: user.multiFactor.user.uid,
     country: inputData.country,
     memo: inputData.memo,
     point: inputData.point,
-    country_pic: inputData.country_pic
+    country_pic: inputData.country_pic,
+    timeStamp:e.timeStamp
     });
     } catch (error) {
     console.log(error);
