@@ -69,7 +69,7 @@ const handleChange = async(e) => {
     console.log(options)
   return (
     <div>
-      <div id='contact'>
+      <div id='add'>
         <div className='container'>
         <Grid 
           container

@@ -1,5 +1,4 @@
 const countryList = [
-    "--Chose Country--",
     "Afghanistan",
     "Åland Islands",
     "Albania",

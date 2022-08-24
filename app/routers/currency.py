@@ -52,7 +52,6 @@ class CurrencyFinder:
         current_price = result["rates"][n]["end_rate"]
         if change_pct >= 19 and n != "BTC":
           # Get basic country`s info
-          print(n)
           url = f"https://restcountries.com/v2/currency/{n}" 
           r = requests.get(url)
           if r.status_code == 404:
@@ -61,7 +60,6 @@ class CurrencyFinder:
             currency_places = r.json()
 
             # if len(currency_places) > 1:
-            print(currency_places)
             for place in range(len(currency_places)):
                 country_info = {}
                 country_data = currency_places
@@ -75,9 +73,9 @@ class CurrencyFinder:
                 country_info["alpha2Code"] = country_data[place]['alpha2Code']
                 country_info["currency"]=n
                 country_info["currecy_rate"] = current_price
-                print(country_data[place])
                 capital = country_info["capital"] = country_data[place]["capital"]
                 country_info["region"] = country_data[place]["subregion"]
+                country_info["change_rate"] =result["rates"][n]["change_pct"]
 
                 # Get picture url of the country
                 url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
@@ -103,7 +101,6 @@ class CurrencyFinder:
                 }
                 r_4 = requests.request("GET", url, headers=headers, params=querystring)
                 cost_of_living = r_4.json()
-                print(cost_of_living)
                 if r_4.status_code == 404 or r_4.status_code == 403:
                   country_info["coke_price"] = "Date not available..."
                   country_info["beer_price"] = "Date not available..."
@@ -112,7 +109,6 @@ class CurrencyFinder:
                     country_info["coke_price"] = "Date not available..."
                     country_info["beer_price"] = "Date not available..."
                   else:
-                    print(cost_of_living["prices"][32])
                     coke_price = cost_of_living["prices"][32]["usd"]["avg"]
                     beer_price = cost_of_living["prices"][33]["usd"]["avg"]
                     country_info["coke_price"] = f"{coke_price}$"
@@ -121,6 +117,6 @@ class CurrencyFinder:
                 countries_info.append(country_info)
         else:
           pass
-
+      print(countries_info)
       return countries_info
       

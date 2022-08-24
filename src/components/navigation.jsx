@@ -48,6 +48,16 @@ export const Navigation = (props) => {
               </a>
             </li>
             <li>
+              <a href='#add' className='page-scroll'>
+                Add
+              </a>
+            </li>
+            <li>
+              <a href='#destinations' className='page-scroll'>
+                Destinations
+              </a>
+            </li>
+            <li>
               <a onClick={handleLogout} style={{color: "#F89C05"}}>
                 Log Out
               </a>
