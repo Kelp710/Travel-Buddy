@@ -19,9 +19,7 @@ export const Contact = ({inputData, setInputData}) => {
   
 
 const handleChange = async(e) => {
-  console.log(inputData)
   if (e.target.name ==="point"){
-    console.log(e)
     setInputData((prevState) => ({ ...prevState, "point": e.target.value }))
   }
     else if(e.target.name=="memo"){
@@ -36,12 +34,18 @@ const handleChange = async(e) => {
     data.json().then(snapshot => {
       setInputData((prevState) => ({ ...prevState, "country_pic": snapshot.results[0].urls.raw }))
     })}
-    console.log(inputData)
   }
+
+  const initial={
+    memo:"",
+    country:"",
+    country_pic:"",
+    point:"",
+    timeStamp:""
+}
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.timeStamp)
     try {
     await addDoc(collection(db, "users"), {
     user: user.multiFactor.user.uid,
@@ -51,11 +55,18 @@ const handleChange = async(e) => {
     country_pic: inputData.country_pic,
     timeStamp:e.timeStamp
     });
+
     } catch (error) {
     console.log(error);
     }
+    // await setInputData((prevState) => ({ ...prevState, "country": "" }))
+    // await setInputData((prevState) => ({ ...prevState, "memo": ""}))
+    // await setInputData((prevState) => ({ ...prevState, "point": "" }))
+    setInputData({...initial})
+    setInputData((prevState) => ({ ...prevState, "country": options[0].label }))
+    console.log(inputData.country)
     };
-
+    console.log(options)
   return (
     <div>
       <div id='contact'>
@@ -78,21 +89,24 @@ const handleChange = async(e) => {
                 <div className='row'>
                   <div className='col-md-6'>
                     <div className='form-group'>
+                      {/* value need to be adequate */}
                     <Select 
                     className="select_country" 
                     type="text" 
                     name='country' 
-
+                    placeholder="Country"
+                    value={{ id: 0, label: inputData.country, "target": {"name":"country"} }}
                     options={options}
                     getOptionValue={option => option.id}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    />
 
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                    <input type="number" min="0" max="100" name="point" required className='point' onChange={handleChange} />
+                    <input type="number" min="0" max="100" name="point" placeholder='Rate' value={inputData.point} required className='point' onChange={handleChange} />
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>

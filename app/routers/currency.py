@@ -50,7 +50,7 @@ class CurrencyFinder:
       for n in result["rates"]:
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
-        if change_pct >= 19:
+        if change_pct >= 19 and n != "BTC":
           # Get basic country`s info
           print(n)
           url = f"https://restcountries.com/v2/currency/{n}" 
@@ -124,6 +124,3 @@ class CurrencyFinder:
 
       return countries_info
       
-
-c = CurrencyFinder("JPY", "2022-05-13", "2022-08-15")
-c.find_countries()

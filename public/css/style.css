@@ -594,6 +594,7 @@ header .intro-text {
 }
 .select_country{
   color: black;
+  opacity: +1 !important;
 }
 #contact form {
   padding-top: 20px;

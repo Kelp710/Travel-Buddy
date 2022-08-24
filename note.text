@@ -1,2 +1,4 @@
 To use dict from python (uvicorn app.main:app --reload)
 to start the app (npm start)
+order of the list, only consider biggest digit
+cost of living

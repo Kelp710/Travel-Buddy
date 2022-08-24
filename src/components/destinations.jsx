@@ -24,29 +24,14 @@ export const Destinations = () => {
     }
 
     useEffect( async() => {
-      const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
+     const docRef = query(collection(db, "users"),where("user", '==', user_id),orderBy('point', 'desc'))
       const unsubscribe = onSnapshot(docRef, (querySnapshot) => {
         const results = [];
         querySnapshot.forEach((doc) => {
-          console.log(doc)
       results.push({ id: doc.id, ...doc.data() })
         });
         setDestinations(results)
       });
-      // const observer = query.onSnapshot(querySnapshot => {
-      //   console.log(querySnapshot);
-      // }, err => {
-      //   console.log(`Encountered error: ${err}`);
-      // });
-      // const docRef = query(collection(db, "users"),where("user", '==', user_id), orderBy('point'))
-      // getDocs(docRef).then(snapshot => {
-      //   let results = []
-      //   snapshot.docs.forEach(doc => {
-      //     results.push({ id: doc.id, ...doc.data() })
-
-      //   })
-      //   setDestinations(results)
-      // })
   }, [])
 
   const styles = {
@@ -56,7 +41,7 @@ export const Destinations = () => {
       marginTop:'30'
     }
   };
-console.log(destinations)
+
   return (<div id='destinations'>
     <div className='cards '>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>

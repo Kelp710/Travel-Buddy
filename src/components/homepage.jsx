@@ -19,10 +19,11 @@ export const Home = () => {
     const { user } = useAuthContext();
   	const url = "http://127.0.0.1:8000/";
     const [inputData, setInputData] = useState({
-      file:"",
       memo:"",
       country:"",
-      country_pic:""
+      country_pic:"",
+      point:"",
+      timeStamp:""
   });
   
   // console.log(axios.get(url).data)
