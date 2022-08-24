@@ -75,7 +75,7 @@ class CurrencyFinder:
                 country_info["currecy_rate"] = current_price
                 capital = country_info["capital"] = country_data[place]["capital"]
                 country_info["region"] = country_data[place]["subregion"]
-                country_info["change_rate"] =result["rates"][n]["change_pct"]
+                country_info["change_rate"] =round(result["rates"][n]["change_pct"],1)
 
                 # Get picture url of the country
                 url = f"https://api.unsplash.com/photos/random/?client_id={unsplash_key}&query={country}&per_page=4&order_by=popular&orientation=landscape&count=1&content_filter=high"
@@ -91,28 +91,6 @@ class CurrencyFinder:
 
                 country_info["safe_level"]=safe_data
 
-                #get cost of living
-                url ="https://cost-of-living-and-prices.p.rapidapi.com/prices"
-                querystring = {"city_name":capital,"country_name":country}
-
-                headers = {
-                  "X-RapidAPI-Key": "996ae8ab49msh8c991b4e71c0891p14d285jsn295dad829477",
-                  "X-RapidAPI-Host": "cost-of-living-and-prices.p.rapidapi.com"
-                }
-                r_4 = requests.request("GET", url, headers=headers, params=querystring)
-                cost_of_living = r_4.json()
-                if r_4.status_code == 404 or r_4.status_code == 403:
-                  country_info["coke_price"] = "Date not available..."
-                  country_info["beer_price"] = "Date not available..."
-                else:
-                  if cost_of_living =={"error":"Couldn't find a city with a given name or id"} or cost_of_living=={'message': 'You have exceeded the rate limit per hour for your plan, BASIC, by the API provider'}:
-                    country_info["coke_price"] = "Date not available..."
-                    country_info["beer_price"] = "Date not available..."
-                  else:
-                    coke_price = cost_of_living["prices"][32]["usd"]["avg"]
-                    beer_price = cost_of_living["prices"][33]["usd"]["avg"]
-                    country_info["coke_price"] = f"{coke_price}$"
-                    country_info["beer_price"] = f"{beer_price}$"
                 
                 countries_info.append(country_info)
         else:
