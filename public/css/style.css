@@ -724,6 +724,11 @@ label {
   top: 76px;
   opacity: 0.9;
 }
+#destinations .links{
+  position: relative;
+  top:65px;
+  right: 10px;
+}
 /* Footer Section*/
 #destinations #footer {
   background: #f6f6f6;

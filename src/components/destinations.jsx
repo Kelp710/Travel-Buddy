@@ -64,9 +64,9 @@ export const Destinations = () => {
             {d.point}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" href={`https://en.wikipedia.org/wiki/${d.country}`}>Wiki</Button>
-          <Button size="small">Learn More</Button>
+        <CardActions className='links'>
+          <Button  sx={{fontSize: 13}} href={`https://en.wikipedia.org/wiki/${d.country}`}>Wiki</Button>
+          <Button  sx={{fontSize: 13}}>Learn More</Button>
         </CardActions> 
       </Card>    
       </Grid>

@@ -82,7 +82,7 @@ const handleChange = async(e) => {
               <div className='section-title'>
                 <h2>Add countries You wanna go.</h2>
                 <p>
-                  Add a country you wanna go with memo and Image
+                  Add a country you want to go with memo and How much you want ot go
                 </p>
               </div>
               <form name='sentMessage' validate onSubmit={onSubmit}>
@@ -127,7 +127,7 @@ const handleChange = async(e) => {
                 </div>
                 <div id='success'></div>
                 <button type='submit' className='btn btn-custom btn-lg'>
-                  Send Message
+                  Submit
                 </button>
               </form>
             </div>
