@@ -10,7 +10,7 @@ app = FastAPI()
 app.include_router(currency.router)
 
 origins = [
-    "http://10.10.1.10:3000",
+    "*",
 ]
 
 app.add_middleware(
@@ -32,5 +32,5 @@ countries_data = {"Countries":countries}
 
 @app.get("/")
 @staticmethod
-def Hello():
+def countries_dic():
     return countries_data
