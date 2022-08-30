@@ -31,7 +31,6 @@ h4 {
   font-weight: 600;
 }
 h5 {
-  text-transform: uppercase;
   font-weight: 700;
   line-height: 20px;
 }
@@ -637,6 +636,11 @@ label {
 }
 #add .point{
   color: #000;
+  border-radius: 10%;
+  border-color: white;
+  height: 35px;
+  width: 90px;
+  text-align: right;
 }
 #add .form-control:focus {
   border-color: #999;
@@ -692,7 +696,8 @@ label {
   background: #fff;
 }
 /* Destination Section */
-#destinations{
+#destinations .form-group{
+  text-transform: uppercase;
 }
 #destinations .cards{
   position: relative;

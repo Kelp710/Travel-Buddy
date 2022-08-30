@@ -10,12 +10,6 @@ export const Header = (props) => {
                 Countries you should go now
                   <span></span>
                 </h1>
-                <a
-                  href='https://www.un.org/en/about-us/universal-declaration-of-human-rights'
-                  className='btn btn-custom btn-lg page-scroll'
-                >
-                  Learn More
-                </a>{' '}
               </div>
             </div>
           </div>

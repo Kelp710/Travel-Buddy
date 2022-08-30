@@ -68,7 +68,6 @@ const handleChange = async(e) => {
     };
     console.log(options)
   return (
-    <div>
       <div id='add'>
         <div className='container'>
         <Grid 
@@ -106,7 +105,7 @@ const handleChange = async(e) => {
                   </div>
                   <div className='col-md-6'>
                     <div className='form-group'>
-                    <input type="number" min="0" max="100" name="point" placeholder='Rate' value={inputData.point} required className='point' onChange={handleChange} />
+                    <input type="number" min="0" max="100" name="point" placeholder='Out of 100' value={inputData.point} required className='point' onChange={handleChange} />
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
@@ -136,6 +135,5 @@ const handleChange = async(e) => {
         </div>
 
       </div>
-    </div>
   )
 }

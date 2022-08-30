@@ -61,7 +61,7 @@ export const Destinations = () => {
           {d.country}
           </Typography>
           <Typography variant="h5" color="text.secondary">
-            {d.point}
+            {d.memo}
           </Typography>
         </CardContent>
         <CardActions className='links'>

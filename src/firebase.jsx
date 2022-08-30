@@ -10,7 +10,6 @@ const firebaseConfig = {
   storageBucket: "travel-buddy-397b7.appspot.com",
   messagingSenderId: "99803071193",
   appId: "1:99803071193:web:c8c0e539309f40d29934c8",
-
 };
 
 

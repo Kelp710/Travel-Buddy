@@ -17,7 +17,7 @@ export const Home = () => {
     const [data, setData] = useState({});
     const usenavigate = useNavigate();
     const { user } = useAuthContext();
-  	const url = "http://127.0.0.1:8000/";
+  	const url = "https://travel-suggest-backend.herokuapp.com/no";
     const [inputData, setInputData] = useState({
       memo:"",
       country:"",
