@@ -6,9 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState, useEffect } from 'react'
-import { auth, db } from '../firebase';
+import {  db } from '../firebase';
 import { useAuthContext } from '../context/authcontext';
-import { getFirestore, collection, query, where, getDocs, orderBy, deleteDoc, doc,onSnapshot, refEqual } from "firebase/firestore";
+import { collection, query, where, orderBy, deleteDoc, doc,onSnapshot } from "firebase/firestore";
 import Grid from '@mui/material/Grid';
 
 export const Destinations = () => {

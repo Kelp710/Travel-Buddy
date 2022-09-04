@@ -3,7 +3,6 @@ import emailjs from 'emailjs-com'
 import Grid from '@mui/material/Grid';
 import Select from 'react-select'
 import countryList from "../data"
-import { connectFirestoreEmulator } from 'firebase/firestore';
 import { useAuthContext } from '../context/authcontext';
 import { db } from '../firebase';
 import { collection, addDoc } from "firebase/firestore";

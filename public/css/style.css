@@ -272,6 +272,13 @@ a:focus,
   top: 65px;
   padding: 10px 19px;
 }
+/* Loading */
+.loading_hellow{
+  position: relative;
+  text-align: center;
+  margin-top: 60px;
+}
+
 /* Log in page */
 .log_in{
   width: 100%;
