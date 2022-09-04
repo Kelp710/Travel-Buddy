@@ -17,7 +17,7 @@ export const Home = () => {
     const [data, setData] = useState({});
     const usenavigate = useNavigate();
     const { user } = useAuthContext();
-  	const url = "https://travel-suggest-backend.herokuapp.com/no";
+  	const url = "https://travel-suggest-backend.herokuapp.com/";
     const [inputData, setInputData] = useState({
       memo:"",
       country:"",

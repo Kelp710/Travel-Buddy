@@ -16,7 +16,7 @@ router = APIRouter(
 app = FastAPI()
 
 origins = [
-    "http://10.10.1.10:3000",
+    "*",
 ]
 
 app.add_middleware(
@@ -50,7 +50,7 @@ class CurrencyFinder:
       for n in result["rates"]:
         change_pct = result["rates"][n]["change_pct"]
         current_price = result["rates"][n]["end_rate"]
-        if change_pct >= 19 and n != "BTC":
+        if change_pct >= 13 and n != "BTC":
           # Get basic country`s info
           url = f"https://restcountries.com/v2/currency/{n}" 
           r = requests.get(url)
