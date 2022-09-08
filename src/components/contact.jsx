@@ -7,6 +7,7 @@ import { useAuthContext } from '../context/authcontext';
 import { db } from '../firebase';
 import { collection, addDoc } from "firebase/firestore";
 
+
 export const Contact = ({inputData, setInputData}) => {
   const {user}=useAuthContext()
   const [img, setImg] = useState("");
@@ -16,6 +17,7 @@ export const Contact = ({inputData, setInputData}) => {
     countryList.map((country, id) =>(
     { id: {id}.id, label: {country}.country, "target": {"name":"country"} }),)
   
+const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY
 
 const handleChange = async(e) => {
   if (e.target.name ==="point"){
@@ -28,7 +30,7 @@ const handleChange = async(e) => {
     setInputData((prevState) => ({ ...prevState, "country": "" }))
     setInputData((prevState) => ({ ...prevState, "country": e.label }))
     const data = await fetch(
-      `https://api.unsplash.com/search/photos?page=1&query=${e.label}&client_id=BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA&order_by=popular&orientation=landscape&count=1&per_page=4&content_filter=high`
+      `https://api.unsplash.com/search/photos?page=1&query=${e.label}&client_id=${UNSPLASH_KEY}&order_by=popular&orientation=landscape&count=1&per_page=4&content_filter=high`
     );
     data.json().then(snapshot => {
       setInputData((prevState) => ({ ...prevState, "country_pic": snapshot.results[0].urls.raw }))

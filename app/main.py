@@ -10,7 +10,7 @@ app = FastAPI()
 app.include_router(currency.router)
 
 origins = [
-    "*",
+    "*"
 ]
 
 app.add_middleware(

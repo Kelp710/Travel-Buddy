@@ -5,6 +5,10 @@ import os
 from datetime import date
 from fastapi import APIRouter, HTTPException
 import datetime
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 router = APIRouter(
     prefix="/countries",
@@ -39,9 +43,9 @@ class CurrencyFinder:
       countries_info = []
       payload = {}
       headers= {
-        "apikey": "YW9YYuJleCkcnDXY4hLUGspYSZI3HZ9J"
+        "apikey": os.environ['Country_Api']
       }
-      unsplash_key = "BIWkxve6hsoQNq7zoauikNAOXOH03SEKh1futEFtnRA"
+      unsplash_key = os.environ['Unsplash_Key']
 
       response = requests.request("GET", url, headers=headers, data = payload)
 

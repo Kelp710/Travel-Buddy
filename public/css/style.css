@@ -86,7 +86,7 @@ hr {
   color: #333;
   text-transform: uppercase;
 }
-#menu.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav > li > a {
   font-family: "Lato", sans-serif;
   text-transform: uppercase;
   color: #555;
@@ -96,7 +96,7 @@ hr {
   border-radius: 0;
   margin: 9px 20px 0;
 }
-#menu.navbar-default .navbar-nav > li > a:after {
+.navbar-default .navbar-nav > li > a:after {
   display: block;
   position: absolute;
   left: 0;
@@ -107,7 +107,7 @@ hr {
   content: "";
   transition: width 0.2s;
 }
-#menu.navbar-default .navbar-nav > li > a:hover:after {
+.navbar-default .navbar-nav > li > a:hover:after {
   width: 100%;
 }
 .navbar-default .navbar-nav > .active > a,
@@ -201,6 +201,17 @@ a:focus,
 .btn.active.focus {
   outline: none;
   outline-offset: none;
+}
+#menu.navbar-default .logout{
+  color :#F89C05; 
+  font-weight: 800;
+
+}
+#menu.navbar-default .logout :hover:after{
+  color :Green; 
+  cursor: -webkit-grab;
+  cursor: grab;
+
 }
 /* Sign in page */
 .sign_in{

@@ -1,14 +1,12 @@
 import { auth } from '../firebase';
 import {useNavigate} from "react-router-dom"
-import { useAuthContext } from '../context/authcontext';
 
 export const Navigation = (props) => {
   const usenavigate = useNavigate();
-  const { user } = useAuthContext();
 
   const handleLogout = () => {
     auth.signOut();
-    usenavigate('/login')
+    usenavigate('#/login')
     usenavigate(0);
   };
   return (
@@ -58,7 +56,7 @@ export const Navigation = (props) => {
               </a>
             </li>
             <li>
-              <a onClick={handleLogout} style={{color: "#F89C05"}}>
+              <a onClick={handleLogout} className="logout">
                 Log Out
               </a>
             </li>
