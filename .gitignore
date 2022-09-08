@@ -19,7 +19,7 @@
 .env.production.local
 firebase.js
 .note.text
-*.env
+/.env
 
 npm-debug.log*
 yarn-debug.log*
