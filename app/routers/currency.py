@@ -92,8 +92,11 @@ class CurrencyFinder:
                 url_safe = f"https://www.travel-advisory.info/api?countrycode={country_code}"
                 r_3 = requests.get(url_safe)
                 safe_data = r_3.json()['data'][country_code]['advisory']
-
-                country_info["safe_level"]=safe_data
+                try:
+                  safe_data = r_3.json()['data'][country_code]['advisory']
+                  print(safe_data)
+                except TypeError:
+                  safe_data = 5
 
                 
                 countries_info.append(country_info)
