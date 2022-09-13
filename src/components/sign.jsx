@@ -1,6 +1,6 @@
 import { auth } from '../firebase';
 import { useState } from 'react';
-import { useAuthContext } from '../context/authcontext';
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 
 
@@ -44,8 +44,9 @@ export const SignUp = () => {
         <button className='signin_button btn-custom '>Sign In</button>
         </div>
       </form>
+      <Link to={'/login'} className="to_login">Back to LogIn page</Link>
       </div>
-      </Grid>
+      </Grid> 
 
     </div>
     )

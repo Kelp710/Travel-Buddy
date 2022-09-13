@@ -1,6 +1,6 @@
 
 import { auth, provider } from '../firebase';
-import { Link, Navigate ,} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from "react";
 import Grid from '@mui/material/Grid';
 import { FcGoogle } from 'react-icons/fc';
@@ -65,7 +65,7 @@ export const Login = () => {
                  <hr className='login_line'/>
                  <button onClick={handleLogin} className="google_button btn-custom"><FcGoogle/> Log in</button>
               <div className='sign_new'>
-          Sign up <Link to={'/signup'}>here</Link>
+              <Link to={'/signup'}>Sign up here</Link>
         </div>
         </form>
         </div>

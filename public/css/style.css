@@ -283,6 +283,16 @@ a:focus,
   top: 65px;
   padding: 10px 19px;
 }
+.to_login{
+  font-size: 2rem;
+  color: #fff;
+  position: relative;
+  top: 75px;
+  left: 85px;
+  margin: 50px  0px;
+  opacity: 1;
+  text-decoration: underline;
+}
 /* Loading */
 .loading_hellow{
   position: relative;
