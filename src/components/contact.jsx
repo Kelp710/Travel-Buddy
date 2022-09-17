@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import emailjs from 'emailjs-com'
 import Grid from '@mui/material/Grid';
 import Select from 'react-select'
 import countryList from "../data"
@@ -21,7 +19,7 @@ const handleChange = async(e) => {
   if (e.target.name ==="point"){
     setInputData((prevState) => ({ ...prevState, "point": e.target.value }))
   }
-    else if(e.target.name=="memo"){
+    else if(e.target.name==="memo"){
     setInputData((prevState) => ({ ...prevState, "memo": e.target.value }))
   }
   else {
