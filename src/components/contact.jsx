@@ -10,8 +10,6 @@ import { collection, addDoc } from "firebase/firestore";
 
 export const Contact = ({inputData, setInputData}) => {
   const {user}=useAuthContext()
-  const [img, setImg] = useState("");
-  const [res, setRes] = useState([]);
   
   const options = 
     countryList.map((country, id) =>(

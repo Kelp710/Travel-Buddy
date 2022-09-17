@@ -521,6 +521,10 @@ header .intro-text {
   position: absolute;
   bottom: 0;
 }
+.img-responsive{
+  width: 520px;
+  height: 320px;
+}
 .danger_level {
   vertical-align: auto;
   width: -moz-fit-content;
