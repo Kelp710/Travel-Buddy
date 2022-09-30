@@ -43,7 +43,7 @@ export const Destinations = () => {
   };
 
   return (<div id='destinations'>
-    <div className='cards '>
+    <div className='cards'>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 3 }}>
       {destinations.map((d, i)=>(
         <div key={i}>

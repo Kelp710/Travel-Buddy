@@ -96,7 +96,6 @@ const handleChange = async(e) => {
                     getOptionValue={option => option.id}
                     onChange={handleChange}
                     />
-
                       <p className='help-block text-danger'></p>
                     </div>
                   </div>
@@ -130,7 +129,6 @@ const handleChange = async(e) => {
           </div>
           </Grid>
         </div>
-
       </div>
   )
 }

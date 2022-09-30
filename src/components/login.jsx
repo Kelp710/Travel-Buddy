@@ -29,7 +29,6 @@ export const Login = () => {
       const [password, setPassword] = useState('');
       const [error, setError] = useState('');
 
-
       const handleChangeEmail = (event) => {
         setEmail(event.currentTarget.value);
       };
@@ -39,7 +38,6 @@ export const Login = () => {
   
       return(
         <div className='log_in'>
-          
           <Grid 
           container
           direction="column"
@@ -68,10 +66,8 @@ export const Login = () => {
               <Link to={'/signup'}>Sign up here</Link>
         </div>
         </form>
-        </div>
-                
+        </div>   
         </Grid>
-
       </div>
       )
     };
